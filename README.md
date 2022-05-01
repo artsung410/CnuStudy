@@ -1,24 +1,20 @@
-# git 레파지토리 가져오기
-Cnu Study
 
-## 1. git 담을 폴더 생성 
+# Cnu Study
 
-## 2. cofnfig 지정 
+## 1. 전남대 Coding Study 공간입니다.
+### - 필기, 백준 문제풀이, 예제문제 풀이등등 개인공부한 것들 다양하게 업로드 하기.
+### - 자료 올릴때 개인 branch 생성 후 push하기.
+### - 유용한 자료 있으면 꾸준히 업로드 하기.
 
- - git config --global user.name "[사용자 이름]"
- - git config --global user.email "[이메일]"
+> 수정사항
 
-## 2. github 레파지토리 생성
+ - 05 / 01
 
-
-## 3. git remote add origin [레파지토리 주소] : 서버를 지정해주는 행위
-
-
-## 4. git clone [레파지토리 주소] : 리모트에서 자료 가져오는 행위
+    - \ examples \ str+function \ **str+function.c** 수정   
+      과제 : strcpy(), strcat(), strlen(), strcmp(), strchr(), strrchr(), strstr() 함수를 반복문 등을 이용하여 직접 구현.
 
  
+출처 : [성권문](https://github.com/artsung410)
 
-
-출처 : [성권문](https://github.com/artsung410), [홍승완](https://github.com/usrrt)
-
+members : 성권문, 홍승완
 

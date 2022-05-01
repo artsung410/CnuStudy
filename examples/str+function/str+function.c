@@ -132,43 +132,46 @@ char* strstr(char* s1, const char* s2)
 
 int main()
 {
-    // [strcpy]
+    // [strcpy] : 문자열 복사하기
     //const char* originStr = "Hello";
     //char reusltStr[10] = "";
     //strcpy(originStr, reusltStr);
     //printf("%s", reusltStr);
 
 
-    // [strcat]
+    // [strcat] : 문자열 이어붙이기
     //char addStr[100] = "abcdefg";
     //const char* originStr = "Hello";
     //strcat(addStr, originStr);
     //printf("%s", addStr);
 
 
-    // [strlen]
+    // [strlen] : 문자열의 길이 반환
     //int legnth;
     //const char* str = "asdfasdfasdf";
     //legnth = strlen(str);
     //printf("%d", legnth);
     
 
-    // [strcmp]
+    // [strcmp] : 문자열 끼리 비교해서 문자끼리 같으면 0, 작으면 -1, 크면 1을 반환
     //const char* str1 = "abcda";
     //const char* str2 = "abcdw";
     //int result;
     //result = strcmp(str1, str2);
     //printf("%d", result);
     
+
     // [strchr] : 문자열에서 특정 문자 찾기 (최초 발견시 결과값 도출)
     //const char* str = "abcdefghijklmn";
     //char ch = 'k';
     //printf("%s", strchr(str, ch));
 
+
     // [strrchr] : 문자열에서 특정 문자 찾기 (전체 탐색후 결과값 도출)
     //const char* str = "abcdefghijklmnkpop";
     //char ch = 'k';
     //printf("%s", strrchr(str, ch));
+
 
     // [strstr] : 문자열에서 특정 단어 찾기
     char* str1 = "abcdefghijklmn";

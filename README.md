@@ -6,10 +6,13 @@
  - 유용한 자료 있으면 꾸준히 업로드 하기.
 
 > 수정사항
+
  - 05 / 01
 
     - \ examples \ str+function \ **str+function.c** 수정   
       과제 : strcpy(), strcat(), strlen(), strcmp(), strchr(), strrchr(), strstr() 함수를 반복문 등을 이용하여 직접 구현.
 
-members : 성권문, 홍승완
+> members
+
+성권문, 홍승완
 

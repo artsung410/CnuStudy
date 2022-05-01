@@ -1,5 +1,7 @@
 
-# Cnu Study 
+# Cnu Study <img src="/icon/cnuIcon.jpg"  width="700" height="370">
+
+출처: https://cutemoomin.tistory.com/entry/Readme-파일에-이미지-넣기-마크다운-이미지 [무민은귀여워]
 
 ## 1. 전남대 Coding Study 공간입니다.
 ### - 필기, 백준 문제풀이, 예제문제 풀이등등 개인공부한 것들 다양하게 업로드 하기.
@@ -7,7 +9,6 @@
 ### - 유용한 자료 있으면 꾸준히 업로드 하기.
 
 > 수정사항
-[cnuIcon](./icon/cnuIcon.jpg)
  - 05 / 01
 
     - \ examples \ str+function \ **str+function.c** 수정   

@@ -1,5 +1,5 @@
 
-# Cnu Study <img src="/icon/cnuIcon.jpg"  width="700" height="370">
+# Cnu Study <img src="/icon/cnuIcon.jpg"  width="50" height="50">
 
 출처: https://cutemoomin.tistory.com/entry/Readme-파일에-이미지-넣기-마크다운-이미지 [무민은귀여워]
 

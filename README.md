@@ -16,5 +16,5 @@
  
 출처 : [성권문](https://github.com/artsung410)
 
-members : 성권문, 홍승완, 유건희, 김정우, 황승환
+members : 성권문, 홍승완
 

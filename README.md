@@ -1,5 +1,5 @@
 
-# Cnu Study
+# Cnu Study [cnuIcon](./icon/cnuIcon.jpg)
 
 ## 1. 전남대 Coding Study 공간입니다.
 ### - 필기, 백준 문제풀이, 예제문제 풀이등등 개인공부한 것들 다양하게 업로드 하기.

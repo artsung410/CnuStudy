@@ -11,8 +11,5 @@
     - \ examples \ str+function \ **str+function.c** 수정   
       과제 : strcpy(), strcat(), strlen(), strcmp(), strchr(), strrchr(), strstr() 함수를 반복문 등을 이용하여 직접 구현.
 
- 
-출처 : [성권문](https://github.com/artsung410)
-
 members : 성권문, 홍승완
 

@@ -191,7 +191,16 @@ strucht Account
 - Runtime Error : 프로그램 실행 중에 오류 발생 (찾기 어렵다)
 
 
-> 분기문
+> 포인터
+
+    // 거꾸로 읽어 나가자
+    
+    // int * const p = arr; // 가리키고 있는 타입이 int이므로 역참조하여 값으 수정할 수 있다., const pointer이므로 주소연산 불가능
+    arr++ 
+
+    // const int * p3 = arr; // 가리키고 있는 타입이 const int 이므로 수정 불가능, const pointer가 아니므로 주소연산 가능
+
+    // const int * const p3 = arr; // 데이터수정, 주소연산 불가능
 
 
 

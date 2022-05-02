@@ -3,7 +3,7 @@
 
 //char* strcpy(const char* s1, char* s2)
 //{
-//	while (*s1 != null)
+//	while (*s1 != NULL)
 //	{
 //        *s2 = *s1; // 역참조를해서 값을 꺼내서 비교를 한다.
 //
@@ -11,19 +11,19 @@
 //	}
 //    return s2; // 최종적으로 str2를 반환한다.
 //}
-//
+
 //char* strcat(char* s1, const char* s2)
 //{
 //    while (1)
 //    {
 //        ++s1; // 첫번째 문자열이 null을 만날때 까지 주소값을 +1씩 증가시킨다.
-//        if (*s1 == null) // 첫번째 문자열의 값이 null을 만나면 
+//        if (*s1 == NULL) // 첫번째 문자열의 값이 null을 만나면 
 //        {
 //            while (1) // 반복문에 진입을 한다.
 //            {
 //                *s1 = *s2; 
 //                ++s1; ++s2; // 두번째 문자열의 값이 null을 만날때까지 주소값을 각각 +1씩 증가시킨다.
-//                if (*s2 == null) // 두번째 문자열의 값이 null을 만나면
+//                if (*s2 == NULL) // 두번째 문자열의 값이 null을 만나면
 //                {
 //                    break; // 제일 안쪽에 있는 while문을 탈출시킨다.
 //                }
@@ -37,7 +37,7 @@
 //int strlen(const char* s)
 //{
 //    int legnthcount = 0; // 문자하나하나 세기위한 카운트 변수 선언
-//    while(*s != null) // 값이 null을 만날때까지
+//    while(*s != NULL) // 값이 null을 만날때까지
 //    {
 //        ++legnthcount; // 문자를 거치면 갯수를 세준다.
 //        ++s; // 카운트가 끝나면 주소값을 +1씩 증가시킨다.
@@ -48,13 +48,14 @@
 
 //int strcmp(const char* s1, const char* s2)
 //{
-//    while(*s1 != NULL) // 값이 NULL을 만날때까지
+//    while(*s1 != NULL || *s2 != NULL) // 값이 NULL을 만날때까지
 //    {
-//        ++s1; ++s2;
 //        if (*s1 > *s2)
 //            return 1;
 //        if (*s1 < *s2)
 //            return -1;
+//
+//        ++s1; ++s2;
 //    }
 //    return 0; // 작업이 완료되면 카운트된 값을 반환한다.
 //}
@@ -75,7 +76,7 @@
 
 //char* strrchr(const char* s, char ch)
 //{
-//    // 문자열  s = abcdefghijklmnkpop,  문자 ch = k
+//     //문자열  s = abcdefghijklmnkpop,  문자 ch = k
 //
 //    int arrIndex = 0;
 //    int arrCount = 0;
@@ -168,9 +169,9 @@ int main()
 
 
     // [strrchr] : 문자열에서 특정 문자 찾기 (전체 탐색후 결과값 도출)
-    //const char* str = "abcdefghijklmnkpop";
-    //char ch = 'k';
-    //printf("%s", strrchr(str, ch));
+    const char* str = "abcdefghijklmnkpop";
+    char ch = 'k';
+    printf("%s", strrchr(str, ch));
 
 
     // [strstr] : 문자열에서 특정 단어 찾기
@@ -179,5 +180,15 @@ int main()
     printf("%s", strstr(str1, str2));
 
     return 0;
+
+
+    // 거꾸로 읽어 나가자
+    
+    // int * const p = arr; // 가리키고 있는 타입이 int이므로 역참조하여 값으 수정할 수 있다., const pointer이므로 주소연산 불가능
+
+    // const int * p3 = arr; // 가리키고 있는 타입이 const int 이므로 수정 불가능, const pointer가 아니므로 주소연산 가능
+
+    // const int * const p3 = arr; // 데이터수정, 주소연산 불가능
+
 }
 

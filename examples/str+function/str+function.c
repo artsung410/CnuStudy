@@ -13,11 +13,7 @@
 //	}
 //    return s2; // 최종적으로 str2를 반환한다.
 //}
-<<<<<<< HEAD
 
-=======
-//
->>>>>>> 46e1d7d3231f5542e37976f02b6bd4d626fd961b
 char* strcat(char* s1, const char* s2)
 {
     while (1)
@@ -52,7 +48,6 @@ char* strcat(char* s1, const char* s2)
 //}
 
 
-<<<<<<< HEAD
 int strcmp(const char* s1, const char* s2)
 {
     while(*s1 != NULL || *s2 != NULL) // 값이 NULL을 만날때까지
@@ -65,7 +60,7 @@ int strcmp(const char* s1, const char* s2)
     }
     return 0; // 작업이 완료되면 카운트된 값을 반환한다.
 }
-=======
+
 //int strcmp(const char* s1, const char* s2)
 //{
 //    while(*s1 != NULL || *s2 != NULL) // 값이 NULL을 만날때까지
@@ -79,7 +74,7 @@ int strcmp(const char* s1, const char* s2)
 //    }
 //    return 0; // 작업이 완료되면 카운트된 값을 반환한다.
 //}
->>>>>>> 46e1d7d3231f5542e37976f02b6bd4d626fd961b
+
 
 //char* strchr(const char* s, char ch)
 //{

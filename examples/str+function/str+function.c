@@ -3,7 +3,7 @@
 
 //char* strcpy(const char* s1, char* s2)
 //{
-//	while (*s1 != null)
+//	while (*s1 != NULL)
 //	{
 //        *s2 = *s1; // 역참조를해서 값을 꺼내서 비교를 한다.
 //
@@ -13,7 +13,11 @@
 //	}
 //    return s2; // 최종적으로 str2를 반환한다.
 //}
+<<<<<<< HEAD
 
+=======
+//
+>>>>>>> 46e1d7d3231f5542e37976f02b6bd4d626fd961b
 char* strcat(char* s1, const char* s2)
 {
     while (1)
@@ -39,7 +43,7 @@ char* strcat(char* s1, const char* s2)
 //int strlen(const char* s)
 //{
 //    int legnthcount = 0; // 문자하나하나 세기위한 카운트 변수 선언
-//    while(*s != null) // 값이 null을 만날때까지
+//    while(*s != NULL) // 값이 null을 만날때까지
 //    {
 //        ++legnthcount; // 문자를 거치면 갯수를 세준다.
 //        ++s; // 카운트가 끝나면 주소값을 +1씩 증가시킨다.
@@ -48,6 +52,7 @@ char* strcat(char* s1, const char* s2)
 //}
 
 
+<<<<<<< HEAD
 int strcmp(const char* s1, const char* s2)
 {
     while(*s1 != NULL || *s2 != NULL) // 값이 NULL을 만날때까지
@@ -60,6 +65,21 @@ int strcmp(const char* s1, const char* s2)
     }
     return 0; // 작업이 완료되면 카운트된 값을 반환한다.
 }
+=======
+//int strcmp(const char* s1, const char* s2)
+//{
+//    while(*s1 != NULL || *s2 != NULL) // 값이 NULL을 만날때까지
+//    {
+//        if (*s1 > *s2)
+//            return 1;
+//        if (*s1 < *s2)
+//            return -1;
+//
+//        ++s1; ++s2;
+//    }
+//    return 0; // 작업이 완료되면 카운트된 값을 반환한다.
+//}
+>>>>>>> 46e1d7d3231f5542e37976f02b6bd4d626fd961b
 
 //char* strchr(const char* s, char ch)
 //{
@@ -75,28 +95,28 @@ int strcmp(const char* s1, const char* s2)
 //}
 
 
-//char* strrchr(const char* s, char ch)
-//{
-//    // 문자열  s = abcdefghijklmnkpop,  문자 ch = k
-//
-//    int arrIndex = 0;
-//    int arrCount = 0;
-//    while (*s != NULL)
-//    {
-//        if (*s == ch)
-//        {
-//            arrIndex = arrCount;
-//        }
-//        ++arrCount;
-//        ++s;
-//
-//        if (*s == NULL)
-//        {
-//            return s - (arrCount - arrIndex);
-//        }
-//    }
-//    return NULL;
-//}
+char* strrchr(const char* s, char ch)
+{
+     //문자열  s = abcdefghijklmnkpop,  문자 ch = k
+
+    int arrIndex = 0;
+    int arrCount = 0;
+    while (*s != NULL)
+    {
+        if (*s == ch)
+        {
+            arrIndex = arrCount;
+        }
+        ++arrCount;
+        ++s;
+
+        if (*s == NULL)
+        {
+            return s - (arrCount - arrIndex);
+        }
+    }
+    return NULL;
+}
 
 //char* strstr(char* s1, const char* s2)
 //{
@@ -180,5 +200,15 @@ int main()
     //printf("%s", strstr(str1, str2));
 
     return 0;
+
+
+    // 거꾸로 읽어 나가자
+    
+    // int * const p = arr; // 가리키고 있는 타입이 int이므로 역참조하여 값으 수정할 수 있다., const pointer이므로 주소연산 불가능
+
+    // const int * p3 = arr; // 가리키고 있는 타입이 const int 이므로 수정 불가능, const pointer가 아니므로 주소연산 가능
+
+    // const int * const p3 = arr; // 데이터수정, 주소연산 불가능
+
 }
 

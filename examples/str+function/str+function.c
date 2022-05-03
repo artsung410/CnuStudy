@@ -11,28 +11,28 @@
 //	}
 //    return s2; // 최종적으로 str2를 반환한다.
 //}
-
-//char* strcat(char* s1, const char* s2)
-//{
-//    while (1)
-//    {
-//        ++s1; // 첫번째 문자열이 null을 만날때 까지 주소값을 +1씩 증가시킨다.
-//        if (*s1 == NULL) // 첫번째 문자열의 값이 null을 만나면 
-//        {
-//            while (1) // 반복문에 진입을 한다.
-//            {
-//                *s1 = *s2; 
-//                ++s1; ++s2; // 두번째 문자열의 값이 null을 만날때까지 주소값을 각각 +1씩 증가시킨다.
-//                if (*s2 == NULL) // 두번째 문자열의 값이 null을 만나면
-//                {
-//                    break; // 제일 안쪽에 있는 while문을 탈출시킨다.
-//                }
-//            }
-//            break; // 작업이 다 끝나면 바깥쪽 while문을 탈출시킨다.
-//        }
-//    }
-//    return s1;  // 합치기가 끝나면 새로 만들어진 문자열을 반환한다.
-//}
+//
+char* strcat(char* s1, const char* s2)
+{
+    while (1)
+    {
+        ++s1; // 첫번째 문자열이 null을 만날때 까지 주소값을 +1씩 증가시킨다.
+        if (*s1 == NULL) // 첫번째 문자열의 값이 null을 만나면 
+        {
+            while (1) // 반복문에 진입을 한다.
+            {
+                *s1 = *s2; 
+                ++s1; ++s2; // 두번째 문자열의 값이 null을 만날때까지 주소값을 각각 +1씩 증가시킨다.
+                if (*s2 == NULL) // 두번째 문자열의 값이 null을 만나면
+                {
+                    break; // 제일 안쪽에 있는 while문을 탈출시킨다.
+                }
+            }
+            break; // 작업이 다 끝나면 바깥쪽 while문을 탈출시킨다.
+        }
+    }
+    return s1;  // 합치기가 끝나면 새로 만들어진 문자열을 반환한다.
+}
 
 //int strlen(const char* s)
 //{
@@ -74,28 +74,28 @@
 //}
 
 
-//char* strrchr(const char* s, char ch)
-//{
-//     //문자열  s = abcdefghijklmnkpop,  문자 ch = k
-//
-//    int arrIndex = 0;
-//    int arrCount = 0;
-//    while (*s != NULL)
-//    {
-//        if (*s == ch)
-//        {
-//            arrIndex = arrCount;
-//        }
-//        ++arrCount;
-//        ++s;
-//
-//        if (*s == NULL)
-//        {
-//            return s - (arrCount - arrIndex);
-//        }
-//    }
-//    return NULL;
-//}
+char* strrchr(const char* s, char ch)
+{
+     //문자열  s = abcdefghijklmnkpop,  문자 ch = k
+
+    int arrIndex = 0;
+    int arrCount = 0;
+    while (*s != NULL)
+    {
+        if (*s == ch)
+        {
+            arrIndex = arrCount;
+        }
+        ++arrCount;
+        ++s;
+
+        if (*s == NULL)
+        {
+            return s - (arrCount - arrIndex);
+        }
+    }
+    return NULL;
+}
 
 char* strstr(char* s1, const char* s2)
 {
@@ -169,9 +169,9 @@ int main()
 
 
     // [strrchr] : 문자열에서 특정 문자 찾기 (전체 탐색후 결과값 도출)
-    const char* str = "abcdefghijklmnkpop";
-    char ch = 'k';
-    printf("%s", strrchr(str, ch));
+    //const char* str = "abcdefghijklmnkpop";
+    //char ch = 'k';
+    //printf("%s", strrchr(str, ch));
 
 
     // [strstr] : 문자열에서 특정 단어 찾기

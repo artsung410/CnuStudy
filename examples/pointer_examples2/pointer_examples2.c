@@ -11,8 +11,16 @@ void myprintf(const char* format, ...)
 		if (*format == '%')
 		{
 			format++;
-			char* str;
-			int val;
+
+			if (*format == 0) // %다음에 0이나올수도 있으니 예외처리를 해준다.
+			{
+				break;
+			}
+
+			char* str; // 문자열 출력을 위한 char 타입 1차원 배열 선언
+			int val; // 정수형 출력을 위한 int 타입 변수 선언.
+			double dou;
+
 			switch (*format)
 			{
 
@@ -25,6 +33,15 @@ void myprintf(const char* format, ...)
 				val = va_arg(args, int);
 				int cnt = 0;
 				char arrInt[100] = { 0 };
+
+				// const int isNegative = n & (1 << 31);
+				//if (isNegative)
+				//{
+				//	putchar('-');
+				//	n -= 1;
+				//	n = ~n;
+				//}
+
 				if (val < 0)
 				{
 					putchar(45);
@@ -55,10 +72,20 @@ void myprintf(const char* format, ...)
 				}
 				break;
 
+			case 'f':
+				dou = va_arg(args, double);
+				printf("%f", dou);
+				//while (*str != NULL)
+				//{
+				//	putchar(*str);
+				//	str++;
+				//}
+				//break;
+
 			case '%':
 				putchar(*format);
 				break;
-
+			
 			default:
 				break;
 			}
@@ -79,6 +106,7 @@ int main ()
 	char* str1 = "artsung";
 	char ch = 'k';
 	int val = -12345;
-	myprintf("char형 : %c, 문자열 : %s, 정수형 : %d, 소수형 : ", ch, str1, val);
+	double pi = 3.141592;
+	myprintf("char형 : %c, 문자열 : %s, 정수형 : %d, 소수형 : %f", ch, str1, val, pi);
 	return 0;
 }

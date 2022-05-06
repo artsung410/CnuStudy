@@ -76,15 +76,6 @@ void myprintf(const char* format, ...) // ...은 가변 인수다., 첫번째 인자를 poin
 				}
 				break;
 
-			case 's':
-				str = va_arg(args, char*);
-				while (*str != NULL)
-				{
-					putchar(*str);
-					str++;
-				}
-				break;
-
 			case '%':
 				putchar(*format);
 				break;

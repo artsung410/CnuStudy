@@ -125,10 +125,6 @@ int main(void)
 
     //return 0;
 
-    printf("필요한 공간 개수를구")
-    int* p = malloc(sizeof(int));
-
-
     //메모리를 수동으로 
     return 0;
 }

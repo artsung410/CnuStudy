@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{a1ffae12-f8e2-4789-b71d-86f7c14afc2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framwork">
+      <UniqueIdentifier>{9660327b-9395-4f3d-aa3c-fcf49cdaaf38}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c" />
+    <ClCompile Include="FrameWork\App.c">
+      <Filter>Framwork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Renderer.c">
+      <Filter>Framwork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Timer.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Type.h">
+      <Filter>Framwork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\App.h">
+      <Filter>Framwork</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="FrameWork\Renderer.h" />
+    <ClInclude Include="FrameWork\Timer.h">
+      <Filter>Framwork</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

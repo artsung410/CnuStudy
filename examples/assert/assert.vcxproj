@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5156877e-0262-41aa-b01f-749db9731c6e}</ProjectGuid>
-    <RootNamespace>string</RootNamespace>
+    <ProjectGuid>{11e0fb80-c2b5-470c-827d-7c302ad1573e}</ProjectGuid>
+    <RootNamespace>assert</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>function1Macro</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,10 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="function1Macro.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="function1Macro.h" />
+    <ClCompile Include="assert.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

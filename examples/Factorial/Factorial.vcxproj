@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b4f44039-cce1-44f8-8a41-dc37e57b7c56}</ProjectGuid>
-    <RootNamespace>ConsoleApplication3</RootNamespace>
+    <ProjectGuid>{6ed847e3-98b9-4d9c-8566-a13824ff80b0}</ProjectGuid>
+    <RootNamespace>Factorial</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication3.cpp" />
+    <ClCompile Include="Factorial.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

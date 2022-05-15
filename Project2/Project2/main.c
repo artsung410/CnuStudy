@@ -4,84 +4,131 @@
 #include <windows.h>
 
 #define DELTA_TIME (float)(currentTick - s_prevTick) / CLOCKS_PER_SEC
-#define MAX_DELTA_TIME 3.0f
+#define BULLET_HOLDING_TIME 3.0
 #define BULLET_SPEED 20
-#define PLAYER_POS_MIN 0
-#define PLAYER_POS_MAX 30
+#define MAP_SIZE_MIN 0
+#define MAP_SIZE_MAX 30
 
-struct player
+struct object
 {
-    int X; // 플레이어 초기 X좌표 선언
-    int Y; // 플레이어 초기 Y좌표 선언
+    int X;
+    int Y;
 
-}player, bullet;
+}player, bullet, monster, title1, title2, title3;
 
-void main() 
+int main()
 {
-    player.X = 1; 
-    player.Y = 1; 
+    title1.X = 11;
+    title1.Y = 0;
+
+    title2.X = 25;
+    title2.Y = 10;
+
+    title3.X = 33;
+    title3.Y = 20;
+
+    player.X = 1;
+    player.Y = 1;
 
     bullet.X = 0;
     bullet.Y = 0;
-    clock_t s_prevTick = 0; 
+
+    clock_t s_prevTick = 0;
+    clock_t currentTick = 0;
 
     bool isBullet = false;
+    bool isMonster = false;
 
-    while(1)
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD titlePos1 = { 0, 0 };
+    COORD titlePos2 = { 0, 0 };
+    COORD titlePos3 = { 0, 0 };
+
+    while (1)
+    {
+        currentTick = clock() * 15;
+
+        COORD titlePos1 = { title1.X, title1.Y + (int)DELTA_TIME };
+        SetConsoleCursorPosition(h, titlePos1);
+        printf("스페이스키를");
+
+        COORD titlePos2 = { title2.X, title2.Y };
+        SetConsoleCursorPosition(h, titlePos2);
+        printf("누르면");
+
+        COORD titlePos3 = { title3.X, title3.Y - (int)DELTA_TIME };
+        SetConsoleCursorPosition(h, titlePos3);
+        printf("다음으로 넘어갑니다.");
+
+        if (title3.Y - (int)DELTA_TIME == title1.Y + (int)DELTA_TIME)
+        {
+            COORD pressAnyKey = { 25, 5 };
+            SetConsoleCursorPosition(h, pressAnyKey);
+            printf("Press Any Key");
+            getch();
+            break;
+        }
+        system("cls");
+    }
+
+    while (1)
     {
         // 방향키 [입력]
-        if (GetAsyncKeyState(VK_LEFT) && (player.X > PLAYER_POS_MIN))
-        { 
+
+        if (GetAsyncKeyState(VK_LEFT) && (player.X > MAP_SIZE_MIN))
+        {
             player.X--;
         }
 
-        if (GetAsyncKeyState(VK_RIGHT) && (player.X < PLAYER_POS_MAX))
-        { 
+        if (GetAsyncKeyState(VK_RIGHT) && (player.X < MAP_SIZE_MAX))
+        {
             player.X++;
         }
 
-        if (GetAsyncKeyState(VK_UP) && (player.Y > PLAYER_POS_MIN))
-        { 
+        if (GetAsyncKeyState(VK_UP) && (player.Y > MAP_SIZE_MIN))
+        {
             player.Y--;
         }
 
-        if (GetAsyncKeyState(VK_DOWN) && (player.Y < PLAYER_POS_MAX))
-        { 
+        if (GetAsyncKeyState(VK_DOWN) && (player.Y < MAP_SIZE_MAX))
+        {
             player.Y++;
         }
 
-        // 플레이어 이동 [처리]
-        COORD playerPos = { player.X, player.Y };
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), playerPos);
-        printf("P"); // 플레이어 화면 [출력]
-
-
         // 총알발사 [입력]
+        clock_t currentTick = clock();
         if (GetAsyncKeyState(VK_SPACE) && isBullet != true)
         {
             bullet.X = player.X + 1;
             bullet.Y = player.Y;
-            s_prevTick = clock();
+            s_prevTick = currentTick;
             isBullet = true;
         }
 
+        // 플레이어 이동 [처리]
+        COORD playerPos = { player.X, player.Y };
+
         // 총알발사 [처리]
-        clock_t currentTick = clock();
         if (isBullet)
         {
             COORD bulletPos = { bullet.X + DELTA_TIME * BULLET_SPEED, bullet.Y };
+            HANDLE bulletHandle = GetStdHandle(STD_OUTPUT_HANDLE);
             SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), bulletPos);
             printf("○"); // 총알을 출력해준다.[출력]
 
-            if (DELTA_TIME > MAX_DELTA_TIME)
+            if (DELTA_TIME >= BULLET_HOLDING_TIME)
             {
                 s_prevTick = currentTick;
                 isBullet = false;
             }
         }
 
-        Sleep(10);
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), playerPos);
+        printf("P"); // 플레이어 화면 [출력]
+        //Sleep(5);
+
         system("cls"); // 화면을 초기화 시켜준다. 
     }
-}
 
+    return 0;
+}

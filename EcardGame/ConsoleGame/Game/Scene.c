@@ -8,6 +8,9 @@
 
 #include "Player.h"
 
+
+bool isComputerKing = true;
+
 Scene g_Scene;
 
 static ESceneType s_nextScene = SCENE_NULL;
@@ -114,24 +117,36 @@ typedef struct tagBettingSceneData
 {
 	Text BettingText[6][128]; // 텍스트 담을 배열 선언하고,
 	COORD BettingCoords[6]; // 포지션 잡고
+
+	Text PlayerTexts[2][128];
+	COORD PlayerCoords[2];
+
 } BettingSceneData;
 
 
 void reset_betting(BettingSceneData* data)
 {
 	TextCopyWithWhite(data->BettingText[0], L"1회전"); // 첫번재 텍스트 카피
-	TextCopyWithWhite(data->BettingText[1], L"Computer : 황제진영");
-	TextCopyWithWhite(data->BettingText[2], L"Player : 노예진영");
+	TextCopyWithWhite(data->BettingText[1], L"Computer : ");
+	TextCopyWithWhite(data->BettingText[2], L"Player : ");
 	TextCopyWithWhite(data->BettingText[3], L"배팅금액을 고르시오");
 	TextCopyWithWhite(data->BettingText[4], L"[100만]  [200만]  [300만]  [400만]  [500만]");
 	TextCopyWithWhite(data->BettingText[5], L"↑");
 
+	if (isComputerKing)
+	{
+		TextCopyWithWhite(&data->PlayerTexts[0], L"황제");
+		TextCopyWithWhite(&data->PlayerTexts[1], L"노예");
+	}
+
 	setCoord(&data->BettingCoords[0], 5, 10);
-	setCoord(&data->BettingCoords[1], 5, 12); 
-	setCoord(&data->BettingCoords[2], 5, 14); 
+	setCoord(&data->BettingCoords[1], 5, 12); // computer :
+	setCoord(&data->BettingCoords[2], 5, 14); // player :
 	setCoord(&data->BettingCoords[3], 5, 16); 
 	setCoord(&data->BettingCoords[4], 5, 18); 
 	setCoord(&data->BettingCoords[5], 7, 20); 
+	setCoord(&data->PlayerCoords[0], 20, 12);
+	setCoord(&data->PlayerCoords[1], 20, 14);
 }
 
 void init_betting(void)
@@ -148,28 +163,27 @@ void update_betting(void)
 	BettingSceneData* data = (BettingSceneData*)g_Scene.Data;
 	COORD coord = data->BettingCoords[5];
 
+
 	if (Input_GetKeyDown(VK_LEFT))
 	{
-		if (coord.X > 7)
+		if (data->BettingCoords[5].X > 7)
 		{
 			coord.X -= 9;
 		}
-		setCoord(&data->BettingCoords[5], coord.X, coord.Y);
 	}
 
 	if (Input_GetKeyDown(VK_RIGHT))
 	{
-		if (coord.X < 36)
+		if (data->BettingCoords[5].X < 43)
 		{
 			coord.X += 9;
 		}
-		setCoord(&data->BettingCoords[5], coord.X, coord.Y);
 	}
 
 	if (Input_GetKeyDown(VK_RETURN))
 	{
 		int32 bettingAmount;
-		switch (coord.X)
+		switch (data->BettingCoords[5].X)
 		{
 		case(7):
 			bettingAmount = 100;
@@ -183,9 +197,14 @@ void update_betting(void)
 		case(34):
 			bettingAmount = 400;
 			break;
+		case(43):
+			bettingAmount = 400;
+			break;
 		}
 		Scene_SetNextScene(SCENE_MAIN);
 	}
+
+	setCoord(&data->BettingCoords[5], coord.X, coord.Y);
 }
 
 void render_betting(void)
@@ -200,6 +219,13 @@ void render_betting(void)
 		Renderer_DrawText(text, len, coord.X, coord.Y);
 	}
 
+	for (int32 i = 0; i < 6; ++i)
+	{
+		Text* text = data->PlayerTexts[i];
+		int32 len = TextLen(text);
+		COORD coord = data->PlayerCoords[i];
+		Renderer_DrawText(text, len, coord.X, coord.Y);
+	}
 }
 
 void release_betting(void)
@@ -214,8 +240,8 @@ void release_betting(void)
 
 typedef struct tagMainSceneData
 {
-	Text MainText[14][128]; // 텍스트 담을 배열 선언하고,
-	COORD MainCoords[14]; // 포지션 잡고
+	Text MainText[7][128]; // 텍스트 담을 배열 선언하고,
+	COORD MainCoords[7]; // 포지션 잡고
 } MainSceneData;
 
 
@@ -223,22 +249,14 @@ typedef struct tagMainSceneData
 void reset_Main(MainSceneData* data)
 {
 	TextCopyWithWhite(data->MainText[0], L"┌─────────┐┌─────────┐┌─────────┐┌─────────┐┌─────────┐"); // 첫번재 텍스트 카피
-	TextCopyWithWhite(data->MainText[1], L"│	  ││	     ││	        ││	       ││	     ││");
-	TextCopyWithWhite(data->MainText[2], L"│	  ││	     ││	        ││	       ││	        │");
-	TextCopyWithWhite(data->MainText[3], L"│	  ││	     ││	        ││	       ││	        │");
-	TextCopyWithWhite(data->MainText[4], L"│	  ││	     ││	        ││	       ││	        │");
-	TextCopyWithWhite(data->MainText[5], L"│	  ││	     ││	        ││	       ││	        │");
+	TextCopyWithWhite(data->MainText[1], L"│*********││*********││*********││*********││*********│");
+	TextCopyWithWhite(data->MainText[2], L"│*********││*********││*********││*********││*********│");
+	TextCopyWithWhite(data->MainText[3], L"│*********││*********││*********││*********││*********│");
+	TextCopyWithWhite(data->MainText[4], L"│*********││*********││*********││*********││*********│");
+	TextCopyWithWhite(data->MainText[5], L"│*********││*********││*********││*********││*********│");
 	TextCopyWithWhite(data->MainText[6], L"└─────────┘└─────────┘└─────────┘└─────────┘└─────────┘");
-	TextCopyWithWhite(data->MainText[7], L"┌─────┐┌─────┐┌─────┐┌─────┐┌─────┐"); // 첫번재 텍스트 카피
-	TextCopyWithWhite(data->MainText[8], L"│	     ││	            ││	       ││	              ││                │");
-	TextCopyWithWhite(data->MainText[9], L"│	     ││	            ││	       ││	              ││                │");
-	TextCopyWithWhite(data->MainText[10], L"│	     ││	            ││	       ││	              ││                │");
-	TextCopyWithWhite(data->MainText[11], L"│	     ││	            ││	       ││	              ││                │");
-	TextCopyWithWhite(data->MainText[12], L"│	     ││	            ││	       ││	              ││                │");
-	TextCopyWithWhite(data->MainText[13], L"└─────┘└─────┘└─────┘└─────┘└─────┘");
 
-
-	for (int i = 0; i < 14; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		setCoord(&data->MainCoords[i], 0, i);
 	}
@@ -262,13 +280,22 @@ void render_Main(void)
 {
 	MainSceneData* data = (MainSceneData*)g_Scene.Data;
 
-	for (int32 i = 0; i < 14; ++i)
+	for (int32 i = 0; i < 7; ++i)
 	{
 		Text* text = data->MainText[i];
 		int32 len = TextLen(text);
 		COORD coord = data->MainCoords[i];
 		Renderer_DrawText(text, len, coord.X, coord.Y);
 	}
+
+	for (int32 i = 0; i < 7; ++i)
+	{
+		Text* text = data->MainText[i];
+		int32 len = TextLen(text);
+		COORD coord = data->MainCoords[i];
+		Renderer_DrawText(text, len, coord.X, coord.Y + 8);
+	}
+
 }
 
 void release_Main(void)

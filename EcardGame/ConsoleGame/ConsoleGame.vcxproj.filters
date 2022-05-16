@@ -44,6 +44,9 @@
     <ClCompile Include="Game\Gun.c">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Card.c">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\App.h">
@@ -77,6 +80,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Bullet.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Card.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

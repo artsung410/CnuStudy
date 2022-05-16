@@ -148,6 +148,7 @@
     <ClCompile Include="Framework\Text.c" />
     <ClCompile Include="Framework\Timer.c" />
     <ClCompile Include="Game\Bullet.c" />
+    <ClCompile Include="Game\Card.c" />
     <ClCompile Include="Game\Gun.c" />
     <ClCompile Include="Game\Player.c" />
     <ClCompile Include="Game\Scene.c" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Framework\Text.h" />
     <ClInclude Include="Framework\Timer.h" />
     <ClInclude Include="Game\Bullet.h" />
+    <ClInclude Include="Game\Card.h" />
     <ClInclude Include="Game\Gun.h" />
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Scene.h" />

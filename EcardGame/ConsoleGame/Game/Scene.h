@@ -17,7 +17,11 @@ typedef enum tagSceneType
 	SCENE_TITLE,
 	SCENE_BETTING,
 	SCENE_MAIN,
+<<<<<<< HEAD
 	SCENE_CLEAR,
+=======
+	SCENE_GAMECLEAR,
+>>>>>>> aebd807fd3c79d2fd9a66bf19f3ffd574765bdcd
 	SCENE_SCOREINFO,
 	SCENE_RESULT,
 	SCENE_MAX

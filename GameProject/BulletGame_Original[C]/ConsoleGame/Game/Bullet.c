@@ -46,7 +46,6 @@ void Bullet_Update(Bullet* bullet)
 		bullet->IsActive = false;
 		--bullet->Gun->BulletCount;
 	}
-
 }
 
 void Bullet_Render(Bullet* bullet)

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3ccfb4f0-d7b6-4220-aebd-ce9b6387a2ed}</ProjectGuid>
-    <RootNamespace>MyVectorcpp</RootNamespace>
+    <ProjectGuid>{9d0a8ccc-5ca5-4409-a5b0-0f1b35b1c58a}</ProjectGuid>
+    <RootNamespace>MyVector</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MyVector.cpp.cpp" />
+    <ClCompile Include="MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyVector.h" />

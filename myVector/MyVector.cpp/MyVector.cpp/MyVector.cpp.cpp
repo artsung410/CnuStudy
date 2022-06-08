@@ -59,13 +59,11 @@ struct MyObject
 class MyVector
 {
 private:
-
-    MyObject* _MyObjs = nullptr; // 벡터의 크기
+    MyObject* _MyObjs = nullptr; // 벡터의 주소값
     size_t _size = 0; // 원소의 개수
     size_t _capacity = 0; // 벡터의 용량
 
 public:
-
     // Constructor.
     MyVector(int capacity) : _capacity(capacity)
     {}
@@ -90,7 +88,10 @@ public:
     // Destructor.
     ~MyVector()
     {
-        clear();
+        delete[] _MyObjs;
+        _MyObjs = nullptr;
+        _size = 0;
+        _capacity = 0;
     }
 
 public: // 아래 기능 함수들을 .cpp 파일에 구현합니다.
@@ -116,17 +117,13 @@ public: // 아래 기능 함수들을 .cpp 파일에 구현합니다.
         }
 
         MyObject* MyObj = new MyObject;
-        MyObject* MyObjs = new MyObject[_capacity];
-
         MyObj->_id = id;
 
         for (size_t i = 0; i < _capacity; i++)
         {
-            MyObjs[i] = _MyObjs[i];
-
             if (i == (_size + 1))
             {
-                MyObjs[i] = *MyObj;
+                _MyObjs[i] = *MyObj;
             }
         }
     }
@@ -161,16 +158,18 @@ public: // 아래 기능 함수들을 .cpp 파일에 구현합니다.
         return _MyObjs[index];
     }
 
-    // Returns string representation of the vector.
-    //std::string ToString() const
-    //{
-    //    std::string myStr;
-    //    for (int i = 0; i < _size; i++) 
-    //    {
-    //        _MyObjs
-    //    }
-    //    return myStr;
-    //}
+    //Returns string representation of the vector.
+
+    std::string ToString() const
+    {
+        std::string myStr;
+        for (int i = 0; i < _size; i++) 
+        {
+            _MyObjs;
+        }
+
+        return myStr;
+    }
 
     // Remove all MyObject instances with the given ID in this vector.
     void RemoveAll(int MyObjectId)
@@ -184,21 +183,45 @@ public: // 아래 기능 함수들을 .cpp 파일에 구현합니다.
         }
     }
 
-    // Returns a newly allocated array of MyVector objects,
+    // Returns a newly allocated array of MyVector objects // 새로 할당된 MyVector 객체 배열을 반환합니다.
     // 
-    // each of whose elements have the same "_id" value of the MyObject struct.
-    // The 'numGroups' is an out parameter, and its value should be set to
-    // the size of the MyVector array to be returned.
+    // each of whose elements have the same "_id" value of the MyObject struct //  각각의 요소는 MyObject 구조체의 동일한 "_id" 값을 갖습니다
+    // 
+    // The 'numGroups' is an out parameter, and its value should be set to // numGroups'는 out 매개변수이며 값을 다음으로 설정해야 합니다.
+    // 
+    // the size of the MyVector array to be returned. // 반환할 MyVector 배열의 크기입니다.
+
+
     MyVector* GroupById(int* numGroups)
     {
-    }
+        MyVector temp(1);
+        for (size_t i = 0; i < _size; ++i)
+        {
+            for (size_t j = 0; j < temp.GetSize(); ++j)
+            {
+                MyObject* pos = temp.FindById(_MyObjs[i]._id)
+                if (_MyObjs[i]._id == temp[j]._id)
+                {
 
-    void clear()
-    {
-        delete[] _MyObjs;
-        _MyObjs = nullptr;
-        _size = 0;
-        _capacity = 0;
+                    break;
+                }
+            }
+
+            if (false == isExist)
+            {
+                temp.Add(_MyObjs[i]._id);
+            }
+        }
+
+        int count = temp.GetSize();
+        MyVector* result = new MyVector[count];
+        *numGroups = count;
+
+        for (size_t i = 0; i < _size; ++i)
+        {
+
+        }
+
     }
 };
 

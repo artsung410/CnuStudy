@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <limits.h>
 
 // 1번 수포자 : 1, 2, 3, 4, 5 //
 // 2번 수포자 : 2, 1, 2, 3, 2, 4, 2, 5 // 
@@ -18,26 +18,17 @@
 // 그 배열 인덱스를 다른배열에 나열. 끄으으으으읕
 using namespace std;
 
-vector<int> mathGiveUpMan1 = { 1, 2, 3, 4, 5 };
-vector<int> mathGiveUpMan2 = { 2, 1, 2, 3, 2, 4, 2, 5 };
-vector<int> mathGiveUpMan3 = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
-vector<int> answer =         { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 
-vector<int> answerCount = { 0, 0, 0 };
-vector<int> mathGiveUpSequence = { 0 };
 
-vector<int>::iterator iter;
 
-vector<int>::iterator iter1;
-vector<int>::iterator iter2;
-vector<int>::iterator iter3;
 
-vector<vector<int>::iterator> iterator3 = { iter1, iter2, iter3 };
-
+// 수포자의 답지가 시험 문제수보다 적을때 복사작업이 일어난다.
 void CopyData(vector<int> answers, vector<int> mathGiveUpMan)
 {
     if (answers.size() > mathGiveUpMan.size())
     {
+        mathGiveUpMan.reserve(mathGiveUpMan.size() + 10);
+        int prevSize = mathGiveUpMan.size();
         int count = answers.size() / mathGiveUpMan.size();
         int n = 0;
         while (1)
@@ -46,63 +37,121 @@ void CopyData(vector<int> answers, vector<int> mathGiveUpMan)
             {
                 break;
             }
-            for (int i = 0; i < mathGiveUpMan.size(); ++i)
+
+            for (int i = 0; i < prevSize; ++i)
             {
                 mathGiveUpMan.push_back(mathGiveUpMan[i]);
             }
+
             ++n;
         }
     }
 }
 
-void AnswerCount(vector<int> answers, vector<int> mathGiveUpMan, vector<vector<int>::iterator> iterator, vector<int> answerCount)
+// 정답개수 세기
+void AnswerCount(vector<int> answers, vector<int> aCnt, vector<vector<int>> mgms)
 {
-    iter1 = mathGiveUpMan1.begin();
-    iter2 = mathGiveUpMan2.begin();
-    iter3 = mathGiveUpMan3.begin();
+    vector<int>::iterator iter_answer;
+    vector<int>::iterator iter_mgm1;
+    vector<int>::iterator iter_mgm2;
+    vector<int>::iterator iter_mgm3;
+    vector<int>::iterator iter_acnt;
 
-    for (iter = answers.begin(); iter != answers.end(); ++iter)
+    
+    iter_mgm1 = mgms[0].begin();
+    iter_mgm2 = mgms[1].begin();
+    iter_mgm3 = mgms[2].begin();
+
+    int cnt1 = 0;
+    int cnt2 = 0;
+    int cnt3 = 0;
+
+    for (iter_answer = answers.begin(); iter_answer != answers.end(); ++iter_answer)
     {
-        if (*iter = *iterator[i])
+        if (*iter_answer == *iter_mgm1)
         {
-            ++answerCount[0];
+            ++cnt1;
         }
 
-        if (*iter = *iter2)
+        if (*iter_answer == *iter_mgm2)
         {
-            ++answerCount[1];
+            ++cnt2;
         }
 
-        if (*iter = *iter3)
+        if (*iter_answer == *iter_mgm3)
         {
-            ++answerCount[2];
+            ++cnt3;
         }
+
+        ++iter_mgm1;
+        ++iter_mgm2;
+        ++iter_mgm3;
     }
 
+    aCnt.reserve(5);
+    aCnt.push_back(5);
+    aCnt.push_back(2);
+    aCnt.push_back(3);
 }
 
-vector<int> solution(vector<int> answers)
-{   
-    CopyData(answers, mathGiveUpMan1);
-    CopyData(answers, mathGiveUpMan2);
-    CopyData(answers, mathGiveUpMan3);
+// 정답개수에 따라 학생을 오름차순으로 정렬
+void sortData(vector<int> aCnt)
+{
+    int temp;
+    for (int i = 0; i < aCnt.size(); ++i)
+    {
+        for (int j = 0; j < aCnt.size() - 1; j++)
+        {
+            if (aCnt[j] > aCnt[j + 1])
+            {
+                temp = aCnt[j];
+                aCnt[j] = aCnt[j + 1];
+                aCnt[j + 1] = temp;
+            }
+        }
+    }
+}
 
-    int* mgm[] = {mathGiveUpMan1AnswerCount, ;
-    int* mgm2 = &mathGiveUpMan2AnswerCount;
-    int* mgm3 = &mathGiveUpMan3AnswerCount;
 
+//vector<int> solution(vector<int> answers)
+//{   
+//    for (int i = 0; i < mathGiveUpMans.size(); ++i)
+//    {
+//        CopyData(answers, mathGiveUpMans[i]);
+//    }
+//
+//    AnswerCount(answers, answerCount);
+//
+//
+//    return answer;
+//}
 
+void solution(vector<int> answers, vector<vector<int>> mgms, vector<int> aCnt)
+{
+    for (int i = 0; i < mgms.size(); ++i)
+    {
+        CopyData(answers, mgms[i]);
+    }
 
+    AnswerCount(answers, aCnt, mgms);
 
-    answerCount.push_back(mathGiveUpMan1AnswerCount);
-    answerCount.push_back(mathGiveUpMan2AnswerCount);
-    answerCount.push_back(mathGiveUpMan3AnswerCount);
-    
-    return answer;
+    for (int i = 0; i < aCnt.size(); ++i)
+    {
+        cout << aCnt[i] << endl;
+    }
 }
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    vector<int> mathGiveUpMan1 = { 1, 2, 3, 4, 5 };
+    vector<int> mathGiveUpMan2 = { 2, 1, 2, 3, 2, 4, 2, 5 };
+    vector<int> mathGiveUpMan3 = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+    vector<int> answer = { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+
+    vector<int> answerCount = { 0 };
+    vector<int> mathGiveUpSequence = { 0 };
+    vector<vector<int>> mathGiveUpMans = { mathGiveUpMan1 , mathGiveUpMan2 , mathGiveUpMan3 };
+
+    solution(answer, mathGiveUpMans, answerCount);
 }
 

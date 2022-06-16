@@ -5,12 +5,12 @@
 using namespace std;
 
 
-
 // 0 ~ 12 : 스페이드
 // 13 ~ 25 : 클로버
 // 26 ~ 38 : 하트
 // 38 ~ 51 : 다이아몬드
 // 52 : 조커
+
 bool isUsedCard[53] = { false };
 
 /// <summary>

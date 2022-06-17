@@ -1,0 +1,8 @@
+// 블로그 주석 효과
+
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><span class="artsung">클래스의 구성요소</span>&nbsp; &nbsp;</span></h2>
+
+
+<h3 style="text-align: left;" data-ke-size="size23"><span style="font-family: 'Noto Serif KR';"><span class="artsung_1">클래스란?</span></span></h3>
+
+

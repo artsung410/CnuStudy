@@ -24,7 +24,7 @@ void UseShop()
 	// 상점이용
 }
 
-void PrintMap(int **arr, int size)
+void PrintMap(char **arr, int size)
 {
 	
 	for (int i = 0; i < size; i++)

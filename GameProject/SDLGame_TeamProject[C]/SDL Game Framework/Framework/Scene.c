@@ -34,7 +34,7 @@ void init_title(void)
 
 	Audio_LoadMusic(&data->BGM, "Background.mp3");
 	Audio_Play(&data->BGM, INFINITY_LOOP);
-}
+}	
 
 #define GameStartPosX 528
 #define GameStartPosY 533

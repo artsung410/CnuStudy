@@ -6,7 +6,6 @@ class ForwardList
     // 연결 리스트에서 데이터를 저장하기 위한 타입
     // 즉, 연결 리스트는 데이터를 직접적으로 다루는 것이 아니라
     // Node라는 것으로 다룹니다.
-
     struct Node 
     {
         Node(int data = 0, Node* next = nullptr);
@@ -21,38 +20,9 @@ class ForwardList
 public:
     // 데이터를 수정할 수 없는 반복자.
     // const int* 
-    class const_iterator
-    {
-    public:
-        const_iterator(Node* p = nullptr);
-        ~const_iterator();
-
-        const int&              operator*() const; // 역참조 연산자
-        const int*              operator->() const; // 멤버 접근
-        const_iterator&         operator++();       // 전위 증가 연산자
-        const_iterator          operator++(int);    // 후위 증가 연산자
-        bool                    operator==(const const_iterator& rhs) const;
-        bool                    operator!=(const const_iterator& rhs) const;
-        bool                    operator==(nullptr_t p) const;
-        bool                    operator!=(nullptr_t p) const;
-
-    public:
-        Node* _p = nullptr;
-    };
 
     // 데이터 수정이 가능한 반복자
     // int*
-
-    class iterator : public const_iterator
-    {
-    public:
-        iterator(Node* p = nullptr);
-
-        int& operator*() const;
-        int* operator->() const;
-        iterator&       operator++();
-        iterator        operator++(int);
-    };
 
     // 기본 생성자
     ForwardList();
@@ -71,28 +41,26 @@ public:
 
     // 첫 번째 요소를 반환한다.
     int& front();
-    const int& front() const;
 
     // 시작 전 요소를 가리키는 반복자를 반환한다.
-    iterator            before_begin();
-    const_iterator      before_begin() const;
+    Node* before_begin();
 
     // 시작 요소를 가리키는 반복자를 반환한다.
-    iterator            begin();
-    const_iterator      begin() const;
+    Node* begin();
+    Node* begin() const;
 
     // 끝 다음 요소를 가리키는 반복자를 반환한다.
-    iterator            end();
-    const_iterator      end() const;
+    Node* end();
+    Node* end() const;
 
     // pos 다음에 value를 삽입한다.
     // 삽입된 요소를 가리키는 반복자를 반환한다.
-    iterator            insert_after(const_iterator pos, int value);
+    Node* insert_after(Node* pos, int value);
 
     // pos 다음 요소를 삭제한다.
     // 삭제된 요소의 다음 요소를 가리키는 반복자를 반환한다.
     // 아무 요소도 없으면 end()를 반환한다.
-    iterator            erase_after(const_iterator pos);
+    Node* erase_after(Node* pos);
 
     // 시작 요소에 value를 삽입한다.
     void                push_front(int value);

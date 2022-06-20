@@ -2,6 +2,7 @@
 #include <math.h>
 #include <utility>
 
+// 기본 생성자
 ForwardList::ForwardList()
 {
 	// _head-> []
@@ -11,6 +12,7 @@ ForwardList::ForwardList()
 	_head->Next = _end; 
 }
 
+// count만큼의 요소를 갖고 있는 컨테이너를 만드는 생성자
 ForwardList::ForwardList(size_t count) : ForwardList()
 {
 	for (size_t i = 0; i < count; ++i)
@@ -19,16 +21,18 @@ ForwardList::ForwardList(size_t count) : ForwardList()
 	}
 }
 
+// 복사 생성자.
 ForwardList::ForwardList(const ForwardList& other)
 	: ForwardList()
 {
-	iterator inserted = before_begin();
-	for (const_iterator iter = other.begin(); iter != other.end(); ++iter)
+	Node* inserted = before_begin();
+	for (Node* iter = other.begin(); iter != other.end(); ++iter)
 	{
-		inserted = insert_after(inserted, *iter);
+		inserted = insert_after(inserted, iter->Data);
 	}
 }
 
+// 할당 연산자
 ForwardList& ForwardList::operator=(const ForwardList& rhs)
 {
 	if (&rhs != this)
@@ -37,10 +41,10 @@ ForwardList& ForwardList::operator=(const ForwardList& rhs)
 		std::swap(_head, temp._head);
 		std::swap(_end, temp._end);
 	}
-	
 	return *this;
 }
 
+// 소멸자
 ForwardList::~ForwardList()
 {
 	clear();
@@ -50,45 +54,41 @@ ForwardList::~ForwardList()
 	_end = nullptr;
 }
 
-const int& ForwardList::front() const
+// 첫 번째 요소를 반환한다.
+int& ForwardList::front()
 {
-	return *begin();
+	return begin()->Data;
 }
 
-ForwardList::iterator ForwardList::before_begin()
-{
-	return _head;
-}
-
-ForwardList::const_iterator ForwardList::before_begin() const
+ForwardList::Node* ForwardList::before_begin()
 {
 	return _head;
 }
 
-ForwardList::iterator ForwardList::begin()
+
+ForwardList::Node* ForwardList::begin()
 {
 	return _head->Next;
 }
 
-ForwardList::const_iterator ForwardList::begin() const
+ForwardList::Node* ForwardList::begin() const
 {
 	return _head->Next;
 }
 
-ForwardList::iterator ForwardList::end()
+ForwardList::Node* ForwardList::end()
 {
 	return _end;
 }
 
-ForwardList::const_iterator ForwardList::begin() const
+ForwardList::Node* ForwardList::end() const
 {
 	return _end;
 }
-
-ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
+ForwardList::Node* ForwardList::insert_after(Node* pos, int value)
 {	
 	Node* newNode = new Node(value);
-	Node* where = pos._p;
+	Node* where = pos;
 
 	newNode->Next = where->Next;
 	where->Next = newNode;
@@ -96,7 +96,7 @@ ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
 	return newNode;
 }
 
-ForwardList::iterator ForwardList::erase_after(const_iterator pos)
+ForwardList::Node* ForwardList::erase_after(Node* pos)
 {
 	// []->[]->[]->[]
 	//   where removed
@@ -105,7 +105,7 @@ ForwardList::iterator ForwardList::erase_after(const_iterator pos)
 		return end();
 	}
 
-	Node* where = pos._p;
+	Node* where = pos;
 	Node* removed = where->Next;
 
 	where->Next = removed->Next;
@@ -146,9 +146,9 @@ void ForwardList::clear()
 
 bool ForwardList::contains(int value) const
 {
-	for (const_iterator iter = begin(); iter != end(); ++iter)
+	for (Node* iter = begin(); iter != end(); ++iter)
 	{
-		if (*iter == value)
+		if (iter->Data == value)
 		{
 			return true;
 		}

@@ -1,4 +1,5 @@
 /*
+
 10X10 타일 위에서 진행되는 영웅의 모험 게임
 - 화면은 초당 30프레임으로 갱신됩니다. pass
 
@@ -24,8 +25,24 @@
  6) 전투 후 결과 처리
  7) 게임 오버
  8) 게임 엔딩
+
 */
 
+<<<<<<< HEAD
+=======
+/*
+	구현한것
+
+	구현못한것
+
+	구현이상한것
+
+	구현잘한것?
+
+	
+*/
+
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 //#include "9_header.h"
 #include <iostream>
 #include <Windows.h>
@@ -42,6 +59,7 @@ struct MapTile
 	char field = '*'; // 안전
 	char swamp = '~'; // 매우위험
 	char forest = '#'; // 위험
+<<<<<<< HEAD
 	char escape = 'E';
 	char store = 'S';
 
@@ -50,6 +68,23 @@ struct MapTile
 struct Hero
 {
 	char shape = 'P';
+=======
+	char escape = 'E'; // 4로표시
+	char store = 'S'; // 5로 표시
+
+}tile;
+
+struct MapSafety
+{
+	int safe = 0;
+	int danger = 1;
+	int veryDanger = 2;
+}safety;
+
+struct Hero
+{
+	char shape = 'P'; // 3으로 표시
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 	int xPos = 0;
 	int yPos = 0;
 
@@ -65,17 +100,26 @@ int main()
 {
 	srand(time(NULL));
 
+<<<<<<< HEAD
 	// 맵위에 상점 랜덤 생성
 	// 영웅위치, 탈출위치 제외생성
 	// 한번만 생성
 	int storeX;
 	int storeY;
 
+=======
+	int storeX;
+	int storeY;
+	// 맵위에 상점 랜덤 생성
+	// 영웅위치, 탈출위치 제외생성
+	// 한번만 생성
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 	do
 	{
 		storeX = rand() % (MAPSIZE);
 		storeY = rand() % (MAPSIZE);
 
+<<<<<<< HEAD
 	} while ((storeX == 0 && storeY == 0) || (storeX == 0 && storeY == (MAPSIZE - 1)));
 
 	while (!gameOver)
@@ -91,6 +135,43 @@ int main()
 				mapArr[i][j] = tile.field;
 			}
 		}
+=======
+	} while ((storeX == 0 && storeY == 0) || (storeX == 0 && storeY == (MAPSIZE - 1)));		 // 상점위치 안겹치게 구현
+
+	COORD cur; // 좌표값 사용
+
+	char mapArr[MAPSIZE][MAPSIZE] = { ' ' };		// 매크로써서 맵 크기 설정
+
+
+	// 0 : 필드
+	// 1 : 숲
+	// 2 : 늪
+	// 스위치문 사용해서 각 번호당 표시되는 타일이 다르게
+	int mapInfo[MAPSIZE][MAPSIZE] = { 0 };			// 맵과 동일한 크기의 정보를 담는 2차원배열 
+	// 맵 데이터 할당
+	for (int i = 0; i < MAPSIZE; i++)
+	{
+		for (int j = 0; j < MAPSIZE; j++)
+		{
+			int infoNum = rand() % 3;
+			mapInfo[i][j] = infoNum;			// 랜덤 숫자로 타일을 표시하기위해 이렇게 했습니다.
+		}
+	}
+		
+	//// 맵 생성 할당
+	//for (int i = 0; i < MAPSIZE; i++)
+	//{
+	//	for (int j = 0; j < MAPSIZE; j++)
+	//	{
+	//		mapArr[i][j] = '!';
+	//		cout << mapArr[i][j] << " ";
+	//	}
+	//}
+
+	// 계속 실행중
+	while (!gameOver)		// 게임 종료전까지 계속 돌아가게했습니다.
+	{
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 
 		// 맵위에 히어로 출력
 		mapArr[hero.yPos][hero.xPos] = hero.shape;
@@ -105,6 +186,7 @@ int main()
 		mapArr[storeY][storeX] = tile.store;
 
 
+<<<<<<< HEAD
 
 		// 맵 타일 출력
 		for (int i = 0; i < MAPSIZE; i++)
@@ -112,10 +194,123 @@ int main()
 			for (int j = 0; j < MAPSIZE; j++)
 			{
 				cout << mapArr[i][j] << " ";
+=======
+		// 맵 타일 출력
+		for (int i = 0; i < MAPSIZE; i++)			// 맵 출력에 이상한점은 처음엔 타일과 영웅이 같이 출력되지않습니다. 움직이면 정상출력됩니다.
+		{
+			for (int j = 0; j < MAPSIZE; j++)
+			{
+				// 싹다 출력
+				cout << mapArr[i][j] << " ";
+
+				// 숫자에 맞는 타일 표시
+				switch (mapInfo[i][j])
+				{
+				case 0:
+					mapArr[i][j] = tile.field;
+					//cout << mapArr[i][j] << " ";
+					break;
+				case 1:
+					mapArr[i][j] = tile.forest;
+					//cout << mapArr[i][j] << " ";
+					break;
+				case 2:
+					mapArr[i][j] = tile.swamp;
+					//cout << mapArr[i][j] << " ";
+					break;
+				default:
+					break;
+				}
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 			}
 			cout << endl;
 		}
 
+<<<<<<< HEAD
+=======
+		// 아래 정보표시 부분은 하드 코딩했습니다. 
+#pragma region 정보표시 
+
+		// 화면 상단에 정보표시
+		// 영웅의 정보, 현재 타일의 정보, 만난 몬스터의 정보
+		// 맵의 오른쪽에 표시한다.
+		cur.X = 22;
+		cur.Y = 0;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "-영웅의 정보-";
+
+		cur.X = 22;
+		cur.Y = 2;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "이름: ";
+
+		cur.X = 22;
+		cur.Y = 4;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "체력: ";
+
+		cur.X = 22;
+		cur.Y = 6;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "골드: ";
+
+		// 현재 몬스터 정보
+		cur.X = 50;
+		cur.Y = 0;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "-몬스터의 정보-";
+
+		cur.X = 50;
+		cur.Y = 2;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "이름: ";
+
+		cur.X = 50;
+		cur.Y = 4;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "체력: ";
+
+		cur.X = 50;
+		cur.Y = 6;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		//cout << "골드: ";
+
+		// 현재타일
+		cur.X = 1;
+		cur.Y = 11;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		cout << "<<<현재 위치>>>";
+
+		string safetyText[3];
+		cur.X = 0;
+		cur.Y = 13;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+		switch (mapInfo[hero.yPos][hero.xPos])
+		{
+		case 0:
+			safetyText[0] = "   안전합니다.";
+			cout << "     -들판-" << endl;
+			cout << safetyText[0];
+			break;
+		case 1:
+			safetyText[1] = "숲이 우거져 위험합니다.";
+			cout << "      -숲-" << endl;
+			cout << safetyText[1];
+			break;
+		case 2:
+			safetyText[2] = "매우 위험한 장소 입니다.";
+			cout << "    -늪지대-" << endl;
+			cout << safetyText[2];
+			break;
+		default:
+			break;
+		}
+
+#pragma endregion
+
+
+
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 		// 히어로 방향키 설정
 		char input;
 		input = _getch();
@@ -124,30 +319,62 @@ int main()
 		case 'a':
 		{
 			hero.xPos--;
+<<<<<<< HEAD
+=======
+			if (hero.xPos < 0)			// 벽에 닿으면 더이상 움직이지 않도록 구상했습니다.
+			{
+				hero.xPos++;		
+			}
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 			break;
 
 		}
 		case 'w':
 		{
 			hero.yPos--;
+<<<<<<< HEAD
+=======
+			if (hero.yPos < 0)
+			{
+				hero.yPos++;
+			}
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 			break;
 
 		}
 		case 's':
 		{
 			hero.yPos++;
+<<<<<<< HEAD
+=======
+			if (hero.yPos == MAPSIZE)
+			{
+				hero.yPos--;
+			}
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 			break;
 
 		}
 		case 'd':
 		{
 			hero.xPos++;
+<<<<<<< HEAD
+=======
+			if (hero.xPos == MAPSIZE)
+			{
+				hero.xPos--;
+			}
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 			break;
 		}
 		}
 
 		//Sleep(100);
+<<<<<<< HEAD
 		system("cls");
+=======
+		system("cls");		// 화면초기화
+>>>>>>> 06c7f77224f4006e7549283fad301c03e7598379
 	}
 
 }

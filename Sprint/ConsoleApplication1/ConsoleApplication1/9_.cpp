@@ -1,6 +1,7 @@
 /*
 10X10 타일 위에서 진행되는 영웅의 모험 게임
-- 화면은 초당 30프레임으로 갱신됩니다.
+- 화면은 초당 30프레임으로 갱신됩니다. pass
+
 - 게임이 시작되면 영웅은 좌상단에, 탈출점은 좌하단에, 상점은 두 지점을 제외한 지점에 생성되며 전체 맵을 4분할한 각 구역마다 랜덤한 위치로 한개씩 생성됩니다.
 - 영웅은 WASD를 누르면 상하좌우로 한 칸씩 이동합니다.
 - 영웅은 이 이동하면 이동한 지역의 안전도에 따라 랜덤하게 몬스터가 출몰합니다. ( 위험할 수록 출몰 확률이 높아지고 더 센 몬스터가 나옴 )
@@ -25,41 +26,128 @@
  8) 게임 엔딩
 */
 
-#include "9_header.h"
+//#include "9_header.h"
+#include <iostream>
+#include <Windows.h>
+#include <conio.h>
 
 using namespace std;
 
+#define MAPSIZE 10
+
+bool gameOver = false;
+
+struct MapTile
+{
+	char field = '*'; // 안전
+	char swamp = '~'; // 매우위험
+	char forest = '#'; // 위험
+	char escape = 'E';
+	char store = 'S';
+
+}tile;
+
+struct Hero
+{
+	char shape = 'P';
+	int xPos = 0;
+	int yPos = 0;
+
+}hero;
+
+struct Monster
+{
+	char shape = 'M';
+
+}monster;
+
 int main()
 {
-	cout << "맵의 크기 : ";
-	int size;
-	cin >> size;
-	// 맵에 쓰일 2차원 배열 동적할당.
-	char** mapArr = new char*[size];
-	for (int i = 0; i < size; i++)
+	srand(time(NULL));
+
+	// 맵위에 상점 랜덤 생성
+	// 영웅위치, 탈출위치 제외생성
+	// 한번만 생성
+	int storeX;
+	int storeY;
+
+	do
 	{
-		mapArr[i] = new char[size];
-		memset(mapArr, ' ', sizeof(char) * size * size);
-	}
+		storeX = rand() % (MAPSIZE);
+		storeY = rand() % (MAPSIZE);
 
-	PrintMap(mapArr, size);
+	} while ((storeX == 0 && storeY == 0) || (storeX == 0 && storeY == (MAPSIZE - 1)));
 
-
-
-
-
-
-
-
-
-
-
-	// 배열 해제
-	for (int i = 0; i < size; i++)
+	while (!gameOver)
 	{
-		delete[] mapArr[i];
-	}
-	delete[] mapArr;
 
+		char mapArr[MAPSIZE][MAPSIZE] = { ' ' };
+
+		// 맵 생성 할당
+		for (int i = 0; i < MAPSIZE; i++)
+		{
+			for (int j = 0; j < MAPSIZE; j++)
+			{
+				mapArr[i][j] = tile.field;
+			}
+		}
+
+		// 맵위에 히어로 출력
+		mapArr[hero.yPos][hero.xPos] = hero.shape;
+
+		// 맵위에 몬스터 출력
+
+
+		// 맵위에 탈출점 생성
+		mapArr[MAPSIZE - 1][0] = tile.escape;
+
+		// 맵위에 상점 표시
+		mapArr[storeY][storeX] = tile.store;
+
+
+
+		// 맵 타일 출력
+		for (int i = 0; i < MAPSIZE; i++)
+		{
+			for (int j = 0; j < MAPSIZE; j++)
+			{
+				cout << mapArr[i][j] << " ";
+			}
+			cout << endl;
+		}
+
+		// 히어로 방향키 설정
+		char input;
+		input = _getch();
+		switch (input)
+		{
+		case 'a':
+		{
+			hero.xPos--;
+			break;
+
+		}
+		case 'w':
+		{
+			hero.yPos--;
+			break;
+
+		}
+		case 's':
+		{
+			hero.yPos++;
+			break;
+
+		}
+		case 'd':
+		{
+			hero.xPos++;
+			break;
+		}
+		}
+
+		//Sleep(100);
+		system("cls");
+	}
 
 }

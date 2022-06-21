@@ -110,9 +110,19 @@ int* ForwardList::iterator::operator->() const
 	return (int*)const_iterator::operator->();
 }
 
-ForwardList::iterator& ForwardList::iterator::operator++();
+ForwardList::iterator& ForwardList::iterator::operator++()
 {
-	return (ForwardList::iterator&)const_iterator::operator++();
+	const_iterator::operator++();
+
+	return *this;
+}
+
+ForwardList::iterator ForwardList::iterator::operator++(int)
+{
+	iterator temp = *this;
+	const_iterator::operator++();
+
+	return temp;
 }
 
 ForwardList::ForwardList()

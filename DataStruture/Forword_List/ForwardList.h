@@ -112,7 +112,7 @@ private:
     // 더미노드 => 실제 데이터를 담지않음, 오로지 구현의 편의성을위해 존재한다
     Node* _head = new Node();   // before_begin();
 
-    // 더미노드
-    Node* _end = new Node();    // end();
+    // end 는 필요없다 그냥 nullptr 
+    // head -> [] -> [] -> [] -> nullptr
 };
 

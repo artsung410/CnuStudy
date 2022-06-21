@@ -1,13 +1,106 @@
 #include "ForwardList.h"
 #include <algorithm>
 
+ForwardList::Node::Node(int data, Node* next)
+	: Data(data), Next(next)
+{
+
+}
+
+ForwardList::Node::~Node()
+{
+	// 댕글링포인터가 안되도록 관리
+	Next = nullptr;
+}
+
+ForwardList::const_iterator::const_iterator(Node* p)
+	: _p(p)
+{
+
+}
+
+ForwardList::const_iterator::~const_iterator()
+{
+	_p = nullptr;
+}
+
+const int& ForwardList::const_iterator::operator*() const
+{
+	return _p->Data;
+}
+
+const int* ForwardList::const_iterator::operator->() const
+{
+	return &(_p->Data); // 주소값을 반환한다.
+	
+}
+
+ForwardList::const_iterator& ForwardList::const_iterator::operator++()
+{
+	_p = _p->Next;
+
+	return *this;
+}
+
+ForwardList::const_iterator ForwardList::const_iterator::operator++(int)
+{
+	// 1. p를 1증가시키고
+	// 2. 이전 p를 반환한다.
+
+	const_iterator temp = *this;
+	_p = _p->Next;
+
+	return temp;
+
+	// iterator를 후위연산자로 쓸경우 연산과정이 증가하므로 엥간하면 전위로 쓰자
+}
+
+bool ForwardList::const_iterator::operator==(const const_iterator& rhs) const
+{
+	if (_p == rhs._p)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool ForwardList::const_iterator::operator!=(const const_iterator& rhs) const
+{
+	return !(*this == rhs);
+}
+
+// 널포인터와 비교하는 연산자
+bool ForwardList::const_iterator::operator==(nullptr_t p)const
+{
+	// 널포인터등장배경 : null의 모호함때문
+	// null은 정수로서의 0도되고
+	// 포인터로서의 null도 되기때문에 -> 오류발생증가
+
+	if (_p == nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool ForwardList::const_iterator::operator!=(nullptr_t p)const
+{
+	return !(*this == nullptr);
+}
+
 ForwardList::ForwardList()
 {
 	// _head -> [something]
 	// _end -> [something]
 
 	// [something] -> [something]
-	_head->Next = _end;
+	// _head->Next = nullptr;
 }
 
 // 생성자
@@ -38,7 +131,7 @@ ForwardList& ForwardList::operator=(const ForwardList& rhs)
 	{
 		ForwardList temp(rhs);
 		std::swap(_head, temp._head);
-		std::swap(_end, temp._end);
+		
 	}
 
 	return *this;
@@ -51,9 +144,6 @@ ForwardList::~ForwardList()
 
 	delete _head;
 	_head = nullptr;
-
-	delete _end;
-	_end = nullptr;
 }
 
 int& ForwardList::front()
@@ -88,12 +178,12 @@ ForwardList::const_iterator ForwardList::begin() const
 
 ForwardList::iterator ForwardList::end()
 {
-	return _end;
+	return nullptr;
 }
 
 ForwardList::const_iterator ForwardList::end() const
 {
-	return _end;
+	return nullptr;
 }
 
 ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
@@ -106,7 +196,7 @@ ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
 	//        value
 
 	Node* newNode = new Node(value);
-	Node* where = pos._p;
+	Node* where = pos._p; // 매개변수로 받은 pos는 특정원소를 가리킴
 
 	newNode->Next = where->Next;
 	where->Next = newNode;
@@ -116,24 +206,20 @@ ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
 
 ForwardList::iterator ForwardList::erase_after(const_iterator pos)
 {
-	//// pos의 다음 노드가 end() => 비었다면
-	//removed == _end;
-	//if (empty())
-	//{
-	//	return end();
-	//}
-	if (empty())
-	{
-		return end();
-	}
+	// [] -> [] -> [] -> [*]
+	//      where  removed 
 
 	Node* where = pos._p;
 	Node* removed = where->Next; // 여기서 removed는 삭제할 노드다.
 
 	where->Next = removed->Next;
-	removed->Next = nullptr;
+	// [] -> [] -> [*]
+	//      where
+	//          []
+	//         removed
+	delete removed;
 
-	return removed;
+	return where->Next;
 }
 
 void ForwardList::push_front(int value)
@@ -148,8 +234,8 @@ void ForwardList::pop_front()
 
 bool ForwardList::empty() const 
 {
-	// begin == end
-	if (_head->Next == _end)
+	// if(begin() == end())
+	if (_head->Next == nullptr)
 	{
 		return true;
 	}

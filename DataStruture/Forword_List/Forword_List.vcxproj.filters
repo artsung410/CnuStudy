@@ -24,9 +24,15 @@
     <ClCompile Include="MyForwardList.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Without_Iterator_ForwardList.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ForwardList.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="No_Iterator_Forward_List.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

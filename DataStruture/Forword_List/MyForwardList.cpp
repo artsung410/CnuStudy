@@ -94,6 +94,27 @@ bool ForwardList::const_iterator::operator!=(nullptr_t p)const
 	return !(*this == nullptr);
 }
 
+ForwardList::iterator::iterator(Node* p)
+	: const_iterator(p)
+{
+
+}
+
+int& ForwardList::iterator::operator*() const
+{
+	return (int&)const_iterator::operator*();
+}
+
+int* ForwardList::iterator::operator->() const
+{
+	return (int*)const_iterator::operator->();
+}
+
+ForwardList::iterator& ForwardList::iterator::operator++();
+{
+	return (ForwardList::iterator&)const_iterator::operator++();
+}
+
 ForwardList::ForwardList()
 {
 	// _head -> [something]
@@ -185,6 +206,8 @@ ForwardList::const_iterator ForwardList::end() const
 {
 	return nullptr;
 }
+
+
 
 ForwardList::iterator ForwardList::insert_after(const_iterator pos, int value)
 {

@@ -4,34 +4,59 @@
 
 int main()
 {
-    int actionNum; // 입력횟수 설정
-    std::cin >> actionNum; // 입력횟수 입력 받기
+    int actionNum;
+    std::cin >> actionNum;
 
-    std::string inputStr; //연달아 있는 문자를 입력받기 위한 스트링 타입 변수 선언
-    std::cin >> inputStr; // 스트링 입력받는다.
-    
-    std::string result;
-    std::cin >> result;
-
-    // 이중 연결리스트를 선언한다. (선언하는 이유 : --연산자를 이용해 주소를 왼쪽으로 이동하기 위해서)
-    std::list<char> list(inputStr.begin(), inputStr.end());
-
-    std::list<char>::iterator cursor = list.end(); // 리스트 형태의 반복자를 초기화 해준다
-
-    while (actionNum > 0)
+    for (;actionNum > 0; --actionNum)
     {
+        std::list<char> Line;
+        std::list<char>::iterator cursor = Line.begin();
 
+        std::string pW;
+        std::cin >> pW; 
 
-        --actionNum;
+        for (int i = 0; i < pW.length(); i++)
+        {
+            if (pW[i] == '<')
+            {
+                if (cursor != Line.begin())
+                {
+                    cursor--;
+                }
+            }
+
+            else if (pW[i] == '>')
+            {
+                if (cursor != Line.end())
+                {
+                    cursor++;
+                }
+            }
+
+            else if (pW[i] == '-')
+            {
+                if (cursor != Line.begin())
+                {
+                    cursor--;
+                    cursor = Line.erase(cursor);
+                }
+            }
+
+            else
+            {
+                Line.insert(cursor, pW[i]);
+            }
+        }
+
+        for (std::list<char>::iterator iter = Line.begin(); iter != Line.end(); iter++)
+        {
+            std::cout << *iter;
+        }
+
+        std::cout << "\n";
     }
 
-    for (std::list<char>::iterator cursor = list.begin(); cursor != list.end(); ++cursor)
-    {
-        std::cout << *cursor;
-    }
 
-    std::cout << std::endl;
-    std::cout << result;
     return 0;
 }
 

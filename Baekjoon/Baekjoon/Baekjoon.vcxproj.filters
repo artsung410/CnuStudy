@@ -21,5 +21,17 @@
     <ClCompile Include="1406_에디터.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="10828_스택.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="10773_제로.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="9012_괄호.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="4949_균형잡힌 세상.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -55,7 +55,7 @@ public:
 
 	// pos다음에 value를 삽입
 	// 삽입된 요소를 가리키는 포인터 반환
-	Node* insert_after(Node* pos, int value);
+	Node* insert_after(const Node* pos, int value);
 
 	// pos다음요소 삭제
 	// 삭제된 요소의 다음 요소를 가리키는 포인터반환

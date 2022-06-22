@@ -1,3 +1,5 @@
+#include "..\List\List.h"
+#include "..\List\List.h"
 #include "ForwardList.h"
 #include <algorithm>
 
@@ -53,6 +55,16 @@ ForwardList::const_iterator ForwardList::const_iterator::operator++(int)
 	return temp;
 
 	// iterator를 후위연산자로 쓸경우 연산과정이 증가하므로 엥간하면 전위로 쓰자
+}
+
+const_iterator& List::const_iterator::operator--()
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+}
+
+const_iterator List::const_iterator::operator--(int)
+{
+	return const_iterator();
 }
 
 bool ForwardList::const_iterator::operator==(const const_iterator& rhs) const

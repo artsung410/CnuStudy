@@ -97,10 +97,10 @@ const ForwardList::Node* ForwardList::end() const
 
 // pos다음에 value를 삽입한다.
 // 삽입된 요소를 가리키는 포인터 반환
-ForwardList::Node* ForwardList::insert_after(Node* pos, int value)
+ForwardList::Node* ForwardList::insert_after(const Node* pos, int value)
 {
 	Node* newNode = new Node(value);
-	Node* where = pos;
+	Node* where = (Node*)pos;
 
 	newNode->Next = where->Next;
 	where->Next = newNode;

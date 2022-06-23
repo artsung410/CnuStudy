@@ -1,55 +1,74 @@
 ﻿#include <iostream>
 #include <stack>
-#include <vector>
+
 using namespace std;
 
 int main()
 {
-    std::stack<int> checkInit;
-    std::vector<int> nge;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
-    int length; 
+    std::stack<int> s1; // 조건에 따라 담는 스택
+    std::stack<int> s2; // 인덱스 담는 스택
+
+    int length;
 
     // 1. 입력
     cin >> length;
-    int* SeqArray = new int[length];
+    int* SeqArray = new int[length]; // 배열 초기화
 
+    int stackNum = 0; // 받을 숫자 초기화
     for (int i = 0; i < length; i++)
     {
-        cin >> SeqArray[i];
+        SeqArray[i] = -1;
+
+        cin >> stackNum; // 넘버를 입력받는다.
 
         if (i == 0)
         {
-            checkInit.push(SeqArray[0]); // 맨아래층에는 무조건 쌓아둔다. 
+            s1.push(stackNum);
+            s2.push(i);
         }
 
-        else
+        // 현재 최상단에 있는 스택이 들어오는 값보다 컸을때
+
+        if (s1.top() > stackNum)
         {
-            for (int j = 0; j < length; j++)
+            s1.push(stackNum);
+            s2.push(i);
+        }
+
+        else if (s1.top() <= stackNum)
+        {
+            while (!s1.empty() && s1.top() < stackNum)
             {
-                if (SeqArray[j] > checkInit.top())
-                {
-                    checkInit.push(SeqArray[i]);
-                    nge.push_back(SeqArray[i]); // 쌓아둔거 위에 큰수가 있으면, 벡터에다가 담아준다.
-                }
+                SeqArray[s2.top()] = stackNum;
+                s1.pop();
+                s2.pop();
             }
+
+            s1.push(stackNum);
+            s2.push(i);
         }
 
     }
 
-    // seqArray = 3, 5, 2, 7
-
-    // 첫번째 쌓고 , 그위의 자신보다 큰수가 없으면 -1 반납 -> vector nge에 담는다. 
-    // 첫번째 쌓고, 그위의 자신보다 바로 큰수가 있으면 그 큰수를 vector nge에 담는다. 
-
-
-    int vecSize2 = nge.size();
-
     // 3. 출력
-    for (int i = 0; i < vecSize2; i++)
+    for (int i = 0; i < length; i++)
     {
-        cout << nge[i] << " ";
+        cout << SeqArray[i] << ' ';
+    }
+
+
+    // 4. 메모리 해제
+    while (!s1.empty())
+    {
+        s1.pop();
+        s2.pop();
     }
 
     delete[] SeqArray;
+
+    return 0;
 }

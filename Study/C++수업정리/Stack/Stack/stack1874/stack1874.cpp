@@ -19,7 +19,6 @@ int main()
         --n;
     }
 
-
     while (!s.empty())
     {
         cout << s.top() << endl;

@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 Stack::Stack(int size) 
 {
     _arrSize = size;

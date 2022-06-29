@@ -10,7 +10,6 @@ ll N, M;
 ll namu[1000000];
 ll temp;
 
-
 int main()
 {
     ios::sync_with_stdio(false);

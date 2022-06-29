@@ -12,7 +12,9 @@ int main()
 	int N;
 	std::cin >> N;
 	for (int i = 0; i < N; ++i)
+	{
 		std::cin >> arr[i];
+	}
 
 	std::sort(arr, arr + N);
 
@@ -25,6 +27,7 @@ int main()
 
 		bool isExist = false;
 		int s = 0, e = N;
+
 		while (s < e)
 		{
 			// 중간 지점 구하고
@@ -36,11 +39,13 @@ int main()
 				isExist = true;
 				break;
 			}
+
 			// 그거에 따라서 범위 조정
 			else if (arr[m] < num)
 			{
 				s = m + 1;
 			}
+
 			else
 			{
 				e = m;

@@ -11,26 +11,22 @@ int generation[MAX_POS];
 int calculation[3];
 
 using namespace std;
-using ll = long long;
 
 int N, K; // 동생의 위치.
 
 // pair형식의 큐 선언
 queue<int> d;
 
-ll msec;
+int msec;
 
 // 미로 경로 탐색
 
 void bfs(int n, int k) // n = 5, k = 17
 {
-    int sec = 0;
-
     d.push(n);
     int v = 0;
-    ll threepow = 0;
 
-    generation[v] = 1; // 1세대로 초기화
+    generation[v] = 0; // 1세대로 초기화
 
     while (!d.empty())
     {
@@ -43,33 +39,38 @@ void bfs(int n, int k) // n = 5, k = 17
             break;
         }
 
-        if (!isVisited[v + 1])
+        if (v + 1 < MAX_POS)
         {
-            d.push(v + 1);
-            if (v + 1 < MAX_POS)
+            if (!isVisited[v + 1])
             {
+                d.push(v + 1);
+
                 isVisited[v + 1] = true;
                 generation[v + 1] = generation[v] + 1;
+
             }
         }
 
-        if (!isVisited[v - 1])
+        if (v - 1 >= 0)
         {
-            d.push(v - 1);
-            if (v - 1 > 0)
+            if (!isVisited[v - 1])
             {
+                d.push(v - 1);
+
                 isVisited[v - 1] = true;
                 generation[v - 1] = generation[v] + 1;
             }
         }
 
-        if (!isVisited[v * 2])
+        if (v * 2 < MAX_POS)
         {
-            d.push(v * 2);
-            if (v * 2 < MAX_POS)
+            if (!isVisited[v * 2])
             {
+                d.push(v * 2);
+
                 isVisited[v * 2] = true;
                 generation[v * 2] = generation[v] + 1;
+
             }
         }
     }

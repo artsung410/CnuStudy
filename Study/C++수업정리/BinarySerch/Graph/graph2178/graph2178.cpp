@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿// **********************  BFS  ****************************
+#include <iostream>
 #include <queue>
 
 using namespace std;
@@ -43,7 +44,6 @@ void bfs()
             int newX = x + dx[i]; 
             int newY = y + dy[i]; 
 
-
             // 새롭게 이동할 좌표가 범위를 벗어났을경우
             if (0 > newX || newX >= X || 0 > newY || newY >= Y)
             {
@@ -54,7 +54,7 @@ void bfs()
             if (!isVisited[newY][newX] && map[newY][newX] == 1) 
             {
                 isVisited[newY][newX] = true; // 방문을 완료한다.          
-                q.push(make_pair(newY, newX)); // 큐에 대기열에 추가한다.
+                q.push(make_pair(newY, newX));// 큐에 대기열에 추가한다.
                 Generation[newY][newX] = Generation[y][x] + 1; // 인접한 정점 모두 +1 씩 카운트한다.
             }
         }

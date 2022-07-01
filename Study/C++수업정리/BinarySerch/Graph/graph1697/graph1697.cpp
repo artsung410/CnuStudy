@@ -8,7 +8,6 @@
 
 bool isVisited[MAX_POS];
 int generation[MAX_POS];
-int calculation[3];
 
 using namespace std;
 

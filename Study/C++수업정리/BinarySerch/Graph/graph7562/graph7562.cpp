@@ -14,7 +14,7 @@ void bfs()
     int dx[8] = { -1, 1, 2, 2, 1, -1, -2, -2 };
     int dy[8] = { 2, 2, 1, -1, -2, -2, -1, 1 };
 
-    Generation[iy][ix] = 1;
+    Generation[iy][ix] = 1;                  
     q.push(make_pair(iy, ix));
     while (!q.empty())
     {
@@ -40,6 +40,10 @@ void bfs()
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
     int T;
 
     cin >> T;

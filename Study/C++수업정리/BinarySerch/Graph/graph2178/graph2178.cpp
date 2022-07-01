@@ -8,11 +8,8 @@ int X, Y; // 높이, 폭 입력받을 변수
 int map[101][101]; // 미로 맵            
 bool isVisited[101][101]; // 방문여부 확인 할 booltype 배열         
 int Generation[101][101]; // 정점과 인접한 정점을 만났을때, 인접한 정점을 모두 +1씩 카운트 하기위한 배열,             
-
-
 // pair형식의 큐 선언
 queue<pair<int, int> > q;
-
 
 // 미로 경로 탐색
 void bfs() 

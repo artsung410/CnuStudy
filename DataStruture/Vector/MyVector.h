@@ -8,49 +8,49 @@ public:
     MyVector();
 
     // count만큼 공간이 할당된 생성자
-    explicit MyVector(size_t count)
-        : _container(new int[count]), _size(count), _capacity(count)
-    {
-        for (size_t i = 0; i < count; i++)
-        {
-            _container[i] = 0; //기본값 할당
-        }
-    }
+    explicit MyVector(size_t count);
+    //    : _container(new int[count]), _size(count), _capacity(count)
+    //{
+    //    for (size_t i = 0; i < count; i++)
+    //    {
+    //        _container[i] = 0; //기본값 할당
+    //    }
+    //}
 
     // 복사 생성자. 깊은 복사(deep copy)가 이뤄져야 한다.
-    MyVector(const MyVector& other)
-        : _container(new int[other._capacity]), _size(other._size), _capacity(other._capacity)
+    MyVector(const MyVector& other);
+    /*    : _container(new int[other._capacity]), _size(other._size), _capacity(other._capacity)
     {
         for (size_t i = 0; i < _size; i++)
         {
             _container[i] = other._container[i];
         }
-    }
+    }*/
 
     // 할당 연산자. 깊은 복사(deep copy)가 이뤄져야 한다.
-    MyVector& operator=(MyVector rhs)
-    {
-        std::swap(_container, rhs._container);
-        std::swap(_size, rhs._size);
-        std::swap(_capacity, rhs._capacity);
-
-        return *this; // 자기자신을 반환해줘야 기본타입처럼 사용할수있음 
-        /*
-            int a, b;
-            a = b = 5; 가능
-                a.operator=(b.operator(5)); 
-
-            vector v1, v2, v3;
-            v1 = v2 = v3; 가능
-                v1.operator=(v2.operator(v3));
-        */
-    }
+    MyVector& operator=(MyVector rhs);
+    //{
+    //    std::swap(_container, rhs._container);
+    //    std::swap(_size, rhs._size);
+    //    std::swap(_capacity, rhs._capacity);
+    //
+    //    return *this; // 자기자신을 반환해줘야 기본타입처럼 사용할수있음 
+    //    /*
+    //        int a, b;
+    //        a = b = 5; 가능
+    //            a.operator=(b.operator(5)); 
+    //
+    //        vector v1, v2, v3;
+    //        v1 = v2 = v3; 가능
+    //            v1.operator=(v2.operator(v3));
+    //    */
+    //}
 
     // 소멸자 : 자원정리
-    ~MyVector()
-    {
+    ~MyVector();
+    /*{
         clear();
-    }
+    }*/
 
     // 첫 번째 요소를 가리키는 반복자를 반환한다. 모든 컨테이너에서 가지고있다
     int* begin()

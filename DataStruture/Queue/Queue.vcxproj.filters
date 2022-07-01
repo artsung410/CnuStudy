@@ -15,16 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector.cpp">
+    <ClCompile Include="How_To_Use_Queue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MyVector.cpp">
+    <ClCompile Include="HowToUse_Deque.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="MyVector.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -44,5 +44,61 @@ using namespace std;
 
 int main()
 {
-	
+	string str;
+	while (true)
+	{
+		ios_base::sync_with_stdio(false);
+		cin.tie(nullptr);
+		cout.tie(nullptr);
+
+		getline(cin, str);
+		if (str[0] == PERIOD)
+		{
+			break;
+		}
+
+		stack<char> stk;
+		bool isCorrect = true;
+		for (int i = 0; i < str.size(); i++)
+		{
+			char ch = str[i];
+			if (ch == BIGBRACKETLEFT || ch == SMALLBRACKETLEFT)
+			{
+				stk.push(ch);
+			}
+			else if (ch == BIGBRACKETRIGHT)
+			{
+				if (!stk.empty() && stk.top() == BIGBRACKETLEFT)
+				{
+					stk.pop();
+				}
+				else
+				{
+					isCorrect = false;
+					break;
+				}
+			}
+			else if (ch == SMALLBRACKETRIGHT)
+			{
+				if (!stk.empty() && stk.top() == SMALLBRACKETLEFT)
+				{
+					stk.pop();
+				}
+				else
+				{
+					isCorrect = false;
+					break;
+				}
+			}
+		}
+
+		if (stk.empty() && isCorrect)
+		{
+			cout << "yes" << endl;
+		}
+		else
+		{
+			cout << "no" << endl;
+		}
+	}
 }

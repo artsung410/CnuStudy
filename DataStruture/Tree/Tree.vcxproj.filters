@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector.cpp">
+    <ClCompile Include="What_is_Tree.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MyVector.cpp">
+    <ClCompile Include="Set.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyVector.h">
+    <ClInclude Include="Set.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

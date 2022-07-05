@@ -19,38 +19,5 @@ using namespace std;
 
 int main()
 {
-	int testCase;
-	cin >> testCase;
-
-	while (testCase--)
-	{
-		// 입력
-		int document;
-		cin >> document;
-		int idx;
-		cin >> idx;
-
-		// 몇번째인지 세기
-		int count = 0;
-
-		// 배열을 큐에 저장
-		queue<int> printer;
-		int* arr = new int[document];
-		for (int i = 0; i < document; i++)
-		{
-			// 중요도 입력
-			int imp;
-			cin >> imp;
-
-			arr[i] = imp;
-			printer.push(arr[i]);
-		}
-
-		// idx입력 -> arr[idx]
-		
-		// 높은순으로 재정렬?
-
-
-		delete[] arr;
-	}
+	
 }

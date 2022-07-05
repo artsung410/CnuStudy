@@ -1,4 +1,6 @@
 #pragma once
+#include <utility>
+
 class Set
 {
     struct Node
@@ -32,7 +34,7 @@ public:
     void                    clear();
 
     // 트리에 값을 삽입한다.
-    pair<Node*, bool>       insert(int value);
+    std::pair<Node*, bool>       insert(int value);
 
     // 트리에서 값을 삭제한다.
     void        erase(Node* pos);
@@ -49,7 +51,7 @@ public:
     void        traverseByLevelorder() const;
 
 private:
-    Node*  _root = nullptr;
+    Node*  _root = new Node();
     size_t _size = 0;
 };
 

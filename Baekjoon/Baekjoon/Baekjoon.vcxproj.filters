@@ -37,6 +37,9 @@
     <Filter Include="소스 파일\재귀">
       <UniqueIdentifier>{bd2194c5-6373-4e36-a52f-37d1b42ea794}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\입출력">
+      <UniqueIdentifier>{b673f906-7750-44b0-a37c-67965adcc136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="그래프와 순회\1260_DFS와BFS.cpp">
@@ -119,6 +122,24 @@
     </ClCompile>
     <ClCompile Include="그래프와 순회\1697_숨바꼭질.cpp">
       <Filter>소스 파일\그래프와 순회</Filter>
+    </ClCompile>
+    <ClCompile Include="입출력\25083_새싹.cpp">
+      <Filter>소스 파일\입출력</Filter>
+    </ClCompile>
+    <ClCompile Include="재귀\10872_팩토리얼.cpp">
+      <Filter>소스 파일\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="브루트포스\2231_분해합.cpp">
+      <Filter>소스 파일\브루트포스</Filter>
+    </ClCompile>
+    <ClCompile Include="브루트포스\7568_덩치.cpp">
+      <Filter>소스 파일\브루트포스</Filter>
+    </ClCompile>
+    <ClCompile Include="브루트포스\1018_체스판 칠하기.cpp">
+      <Filter>소스 파일\브루트포스</Filter>
+    </ClCompile>
+    <ClCompile Include="브루트포스\1436_영화감독 숌.cpp">
+      <Filter>소스 파일\브루트포스</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

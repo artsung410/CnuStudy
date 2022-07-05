@@ -8,7 +8,7 @@ int M, N;
 int box[MAX_LEN][MAX_LEN];
 bool isVisited[MAX_LEN][MAX_LEN];
 int date[MAX_LEN][MAX_LEN];
-int y, x;
+int height, weight;
 int dy, dx;
 queue<pair<int, int>> que;
 
@@ -24,8 +24,8 @@ void bfs()
 				que.push(pair<int, int>(i, j));
 				date[i][j] = 0; // 시작지점
 				isVisited[i][j] = true; // 방문마크
-				x = j;
-				y = i;
+				weight = j;
+				height = i;
 			}
 		}
 	}
@@ -37,15 +37,15 @@ void bfs()
 	static const int pos[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 	while (!que.empty())
 	{
-		y = que.front().first;
-		x = que.front().second;
+		height = que.front().first;
+		weight = que.front().second;
 
 		que.pop();
 
 		for (int i = 0; i < 4; i++)
 		{
-			dy = y + pos[i][0];
-			dx = x + pos[i][1];
+			dy = height + pos[i][0];
+			dx = weight + pos[i][1];
 
 			if (dy < 0 || dy >= N || dx < 0 || dx >= M)
 			{
@@ -59,7 +59,7 @@ void bfs()
 			isVisited[dy][dx] = true;
 			box[dy][dx] = 1;
 			que.push(pair<int, int>(dy, dx));
-			date[dy][dx] = date[y][x] + 1; // 조건만족시 1씩 증가
+			date[dy][dx] = date[height][weight] + 1; // 조건만족시 1씩 증가
 		}
 	}
 }

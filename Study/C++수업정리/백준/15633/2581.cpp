@@ -16,29 +16,43 @@ int main()
 
 	queue<int> q;
 
-	for (int i = M + 1; i < N; i++)
+	if (M != N)
 	{
-		for (int j = 1; j < M; j++)
+		for (int i = M + 1; i < N; i++)
 		{
-			if (i % j == 0)
+			for (int j = 1; j < M; j++)
 			{
-				++cnt;
+				if (i % j == 0)
+				{
+					++cnt;
+				}
 			}
-		}
 
-		if (cnt == 1)
-		{
-			q.push(i);
-			result += i;
+			if (cnt == 1)
+			{
+				q.push(i);
+				result += i;
+			}
+			cnt = 0;
 		}
-
-		cnt = 0;
 	}
 
-	cout << result << "\n";
-	cout << q.front();
-	// 범위안에 소수의 합을 구한다.
+	else
+	{
+		result += M;
+		q.push(M);
+	}
 
-	// 범위안에 소수의 최소값을 구한다.
+
+	if (!q.empty())
+	{
+		cout << result << "\n";
+		cout << q.front();
+	}
+	else
+	{
+		cout << -1;
+	}
+
 	return 0;
 }

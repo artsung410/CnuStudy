@@ -37,7 +37,6 @@ int main()
             arr[i] = i + 1;
         }
 
-
         for (int i = 0; i < orderAlphabet.size(); i++)
         {
             switch (orderAlphabet[i])
@@ -80,7 +79,6 @@ int main()
         isError = !isError;
         --action;
     }
-
 }
 
 //void R()

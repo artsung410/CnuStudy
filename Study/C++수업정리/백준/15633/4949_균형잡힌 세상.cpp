@@ -1,4 +1,4 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <stack>
 #include <string>
 
@@ -12,12 +12,12 @@ int main()
 
     while (1)
     {
-        // 1. ì…ë ¥
+        // 1. ÀÔ·Â
         std::string inputStr;
         getline(cin, inputStr);
 
 
-        // ê¸€ìê°€ í•˜ë‚˜ê³  ì ì¼ë•Œ íƒˆì¶œ..
+        // ±ÛÀÚ°¡ ÇÏ³ª°í Á¡ÀÏ¶§ Å»Ãâ..
         std::stack<char> s;
         bool result = true;
 
@@ -26,7 +26,7 @@ int main()
             break;
         }
 
-        // // 2. ì²˜ë¦¬ : ìŠ¤íƒì— ìš”ì†Œë¥¼ ë‹´ëŠ”ë‹¤.
+        // // 2. Ã³¸® : ½ºÅÃ¿¡ ¿ä¼Ò¸¦ ´ã´Â´Ù.
         for (int i = 0; i < inputStr.length(); i++)
         {
             if (inputStr[i] == '(' || inputStr[i] == '[')

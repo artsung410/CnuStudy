@@ -40,6 +40,9 @@
     <Filter Include="소스 파일\입출력">
       <UniqueIdentifier>{b673f906-7750-44b0-a37c-67965adcc136}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\기본수학">
+      <UniqueIdentifier>{0dde7453-9c64-480f-b292-baabbed9e1d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="그래프와 순회\1260_DFS와BFS.cpp">
@@ -140,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="브루트포스\1436_영화감독 숌.cpp">
       <Filter>소스 파일\브루트포스</Filter>
+    </ClCompile>
+    <ClCompile Include="기본수학\1712_손익분기점.cpp">
+      <Filter>소스 파일\기본수학</Filter>
+    </ClCompile>
+    <ClCompile Include="기본수학\2292_벌집.cpp">
+      <Filter>소스 파일\기본수학</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

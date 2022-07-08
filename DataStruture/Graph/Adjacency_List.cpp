@@ -23,7 +23,9 @@ int main()
 {
 	//[0]: { (1, 1) }
 	Edge edge(1, 1);
-	graph[0].push_back(edge);
+	//graph[0].push_back(edge); 생성자를 이용한방법
+	//graph[0].push_back(Edge(1, 1)); 안쪽에 넣음 위와 동일
+	graph[0].emplace_back(1, 1); // 위와같은 과정이 귀찮아서(구조체만들기) emplace_back함수를 쓴다.
 
 	//[1] : { (0, 1), (2, 2), (3, 2) }
 	Edge edge(0, 1);

@@ -43,6 +43,9 @@
     <Filter Include="소스 파일\기본수학">
       <UniqueIdentifier>{0dde7453-9c64-480f-b292-baabbed9e1d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\정렬">
+      <UniqueIdentifier>{b4ef83c9-ca65-41c9-afbf-dc24129339a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="그래프와 순회\1260_DFS와BFS.cpp">
@@ -149,6 +152,18 @@
     </ClCompile>
     <ClCompile Include="기본수학\2292_벌집.cpp">
       <Filter>소스 파일\기본수학</Filter>
+    </ClCompile>
+    <ClCompile Include="정렬\2750_수 정렬.cpp">
+      <Filter>소스 파일\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="정렬\2751_수 정렬2.cpp">
+      <Filter>소스 파일\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="재귀\2447_별찍기10.cpp">
+      <Filter>소스 파일\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="스택\1874_스택수열.cpp">
+      <Filter>소스 파일\스택</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

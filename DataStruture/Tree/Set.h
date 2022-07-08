@@ -1,5 +1,4 @@
 #pragma once
-#include <utility>
 
 class Set
 {
@@ -10,39 +9,39 @@ class Set
         Node& operator=(const Node&) = delete;
         ~Node();
 
-        bool    IsLeaf() const; // 본인이 리프노드인지 판단해주는 부분
-        // 리프노드란? 자식노드가 없는 노드
+    
 
-        int     Data    = 0;
-        Node*   Parent  = nullptr;
-        Node*   Left    = nullptr;
-        Node*   Right   = nullptr;
+        int     Data = 0;
+        Node*   Parent = nullptr;
+        Node*   Left = nullptr;
+        Node*   Right = nullptr;
     };
 
 public:
+    ~Set();
+
     // 트리의 높이를 구한다.
-    int                     height() const; // 큐를 이용한다.
-    int                     height2() const; // 재귀를 이용한다.
+    int         height() const; // 큐를 이용한다.
+    int         height2() const; // 재귀를 이용한다.
 
     // 트리가 비었는지 확인한다.
-    bool                    empty() const;
+    bool        empty() const;
 
     // 트리의 크기를 반환한다.
-    size_t                  size() const;
+    size_t      size() const;
 
     // 트리를 비운다.
-    void                    clear();
+    void        clear();
 
     // 트리에 값을 삽입한다.
-    std::pair<Node*, bool>       insert(int value);
+    bool        insert(int value);
 
     // 트리에서 값을 삭제한다.
-    void        erase(Node* pos);
-    size_t      erase(int value);
+    void        erase(int value);
+    void        erase(Node* value);
 
     // 트리에서 값을 찾는다.
-    Node*       find(int value);
-    const Node* find(int value) const;
+    Node* find(int value) const;
 
     // 순회
     void        traverseByPreorder() const;
@@ -51,7 +50,20 @@ public:
     void        traverseByLevelorder() const;
 
 private:
-    Node*  _root = new Node();
-    size_t _size = 0;
-};
+    void        traverseByPreorderHelper(Node* node) const;
+    void        traverseByInorderHelper(Node* node) const;
+    void        traverseByPostorderHelper(Node* node) const;
 
+    int         heightHelper(Node* node) const;
+
+private:
+    Node* root() const
+    {
+        return _head->Parent;
+    }
+
+private:
+    // head 범위노드
+    Node* _head = new Node(); // _head != root node    _head->parent에 root node 저장
+    size_t  _size = 0;
+};

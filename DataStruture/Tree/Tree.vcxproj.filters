@@ -21,6 +21,12 @@
     <ClCompile Include="Set.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="hashTable.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Set.h">

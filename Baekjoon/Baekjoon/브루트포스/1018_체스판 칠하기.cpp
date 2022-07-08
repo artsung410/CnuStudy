@@ -94,7 +94,7 @@ int main()
 	}
 
 	// 두 배열중 가장 작은값은?
-	int minBw = 999999;
+	int minBw = 99999;
 	for (int i = 0; i < cnt; i++)
 	{
 		if (minBw > checkBw[i])
@@ -103,7 +103,7 @@ int main()
 		}
 	}
 
-	int minWb = 999999;
+	int minWb = 99999;
 	for (int i = 0; i < cnt; i++)
 	{
 		if (minWb > checkWb[i])

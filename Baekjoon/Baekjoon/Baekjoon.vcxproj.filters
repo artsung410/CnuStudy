@@ -165,5 +165,8 @@
     <ClCompile Include="스택\1874_스택수열.cpp">
       <Filter>소스 파일\스택</Filter>
     </ClCompile>
+    <ClCompile Include="기본수학\1978_소수찾기.cpp">
+      <Filter>소스 파일\기본수학</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

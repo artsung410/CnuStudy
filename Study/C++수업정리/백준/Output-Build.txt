@@ -1,0 +1,8 @@
+﻿Build started...
+1>------ Build started: Project: 백준, Configuration: Debug x64 ------
+1>C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (15633.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+1>1546_평균.cpp
+1>D:\CnuStudy\Study\C++수업정리\백준\15633\1546_평균.cpp(24,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+1>15633.vcxproj -> D:\CnuStudy\Study\C++수업정리\백준\x64\Debug\백준.exe
+1>Done building project "15633.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

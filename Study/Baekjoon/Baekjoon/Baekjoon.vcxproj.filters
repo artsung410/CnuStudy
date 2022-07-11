@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\정렬">
+      <UniqueIdentifier>{a57a934c-5b14-4077-914a-ed3e4a22be5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\분할정복">
+      <UniqueIdentifier>{0088ae8b-b4e6-4df2-891c-eb3570f44eda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="10773_제로.cpp">
@@ -107,6 +113,18 @@
     </ClCompile>
     <ClCompile Include="10172_개.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1181_단어정렬.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="10814_나이순 정렬.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="18870_좌표 압축.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="10830_행렬제곱.cpp">
+      <Filter>Source Files\분할정복</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

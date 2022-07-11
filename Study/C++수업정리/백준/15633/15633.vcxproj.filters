@@ -37,6 +37,12 @@
     <Filter Include="Source Files\큐">
       <UniqueIdentifier>{bb105b86-b961-4b25-922c-b8faebe53311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\재귀">
+      <UniqueIdentifier>{37b86e67-0ff6-46df-b7b6-0f8c7809bae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\정렬">
+      <UniqueIdentifier>{12656fd2-11ed-4712-91b6-7f885fdf243f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1978.cpp">
@@ -113,6 +119,24 @@
     </ClCompile>
     <ClCompile Include="1874_스택수열.cpp">
       <Filter>Source Files\스택</Filter>
+    </ClCompile>
+    <ClCompile Include="11729_하노이탑.cpp">
+      <Filter>Source Files\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="17478_재귀함수가 뭔가요.cpp">
+      <Filter>Source Files\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="10989_수 정렬하기.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="2108_통계학.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="1427_소트인사이드.cpp">
+      <Filter>Source Files\정렬</Filter>
+    </ClCompile>
+    <ClCompile Include="11650_좌표정렬하기.cpp">
+      <Filter>Source Files\정렬</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

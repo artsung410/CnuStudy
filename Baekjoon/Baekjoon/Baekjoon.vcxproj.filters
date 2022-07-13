@@ -46,6 +46,12 @@
     <Filter Include="소스 파일\정렬">
       <UniqueIdentifier>{b4ef83c9-ca65-41c9-afbf-dc24129339a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\문자열">
+      <UniqueIdentifier>{3905e838-8240-45e7-9a0e-dd88fff9a9ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\집합과 맵">
+      <UniqueIdentifier>{53fc874d-4665-4a33-b54a-9b2feaf8504d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="그래프와 순회\1260_DFS와BFS.cpp">
@@ -167,6 +173,18 @@
     </ClCompile>
     <ClCompile Include="기본수학\1978_소수찾기.cpp">
       <Filter>소스 파일\기본수학</Filter>
+    </ClCompile>
+    <ClCompile Include="스택\17298_오큰수.cpp">
+      <Filter>소스 파일\스택</Filter>
+    </ClCompile>
+    <ClCompile Include="문자열\1152_단어의개수.cpp">
+      <Filter>소스 파일\문자열</Filter>
+    </ClCompile>
+    <ClCompile Include="집합과 맵\10815_숫자카드.cpp">
+      <Filter>소스 파일\집합과 맵</Filter>
+    </ClCompile>
+    <ClCompile Include="집합과 맵\14425_문자열 집합.cpp">
+      <Filter>소스 파일\집합과 맵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

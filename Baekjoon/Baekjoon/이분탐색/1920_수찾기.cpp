@@ -19,8 +19,14 @@ bool BinarySearch(int s, int e, int value)
 	{
 		return true;
 	}
-	else if(arr[mid] < value)
-		return BinarySearch()
+	else if (arr[mid] < value)
+	{
+		return BinarySearch(mid + 1, e, value);
+	}
+	else
+	{
+		return BinarySearch(s, mid, value);
+	}
 }
 
 int main()

@@ -1,0 +1,30 @@
+내비게이션 시스템
+
+내비메시
+	- 에이전트가 걸어다닐수있는표면
+	- 없는곳은 땅을찾을수없다
+내비메시 에이전트
+	내비메시 위에서 경로를 계산하고 이동하는 캐릭터 또는 컴포넌트
+	목표를 향해움직일때 서로를 피해가는 캐릭터생성에 유용
+	체격에맞춰 다양한 에이전트를 설정해 각각 분배해줄수있다
+내비메시 장애물
+오프메시 링크
+
+navMeshAgent.isStopped
+	- 
+navMeshAgent.SetDestination()
+	- 
+	
+Pysics.Overlap ~ ()
+	- 동적으로 콜라이더 생성
+	NonAlloc
+		최적화를 위해 메모리를 추가적으로 쓰지않음 매개변수로 갯수를 받는다 권장.
+	리턴값은 int형
+	
+foreach 사용법?
+
+Collider.ClosetPoint
+	- 
+	
+SamplePosition
+	특정범위에서 navMesh기반으로 가장 가까운 점을 찾는다

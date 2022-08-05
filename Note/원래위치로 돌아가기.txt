@@ -1,0 +1,156 @@
+Vector3.Lerp( (Vector3)현재 위치, (Vector3)타겟 위치, 속도 );
+
+
+
+: 타겟 위치에 가까워질수록 속도가 느려짐
+
+
+
+MoveTowards ( (Vector3)현재 위치,  (Vector3)타겟 위치, 속도 );
+
+
+
+: 일정한 속도로 움직임.
+
+
+
+
+
+
+
+
+
+ 플레이어가 오브젝트의 아래를 지나갈 경우 떨어지고, 플레이어가 오브젝트의 범위에서 벗어나면 제자리로 돌아가는 것을 구현하였다.
+
+
+
+매우 간단할 줄 알았던 기능이었는데 은근 시간이 많이 걸렸다.
+
+
+
+Vector3값은 float이라 그런지 == 를 사용할 수 없었다. Unity라 혹시 가능할까 했는데 내가 방법을 못찾은 건지 모르겠지만
+
+
+
+소수점 아래까지 모두 같을 순 없었다.
+
+
+
+구글링을 한 결과 맨 위에 써 놓은 것처럼 특정 좌표로 이동시켜주는 함수를 찾을 수 있었다.
+
+
+
+처음에는 Update()에 두었지만 매 프레임마다 Vector3.Lerp()가 실행되는 것이 문제로 보였고 코루틴을 사용하였다.
+
+
+
+OnTriggerExit2D 이벤트 함수가 실행될 때, 즉 플레이어가 가시상자 오브젝트의 범위를 벗어났을 때 
+
+
+
+제 자리로 돌아갈 수 있는 코드를 코루틴으로 하였고 while문을 통해 제 자리로 돌아갈 수 있는 충분한 시간을 부여하였다.
+
+
+
+
+
+
+
+문제는 만약 각기 높이가 다른 가시상자라면 도달하는 시간이 모두 다르기 때문에 시간을 부여하는 것보다 제 자리로 찾아가면 코루틴을
+
+
+
+종료시키는 것이 더 좋은 방법이다. 더 방법을 찾아봐야 겠다.
+
+
+
+
+
+
+
+* 주의 ) 제 자리로 돌아가는 코루틴이 종료하기 전에 플레이어가 다시 가시상자 오브젝트의 범위에 들어올 수 있으므로
+
+
+
+Trigger 이벤트 함수들 시작할 때 AllStopCoroutine()을 해주어야 한다.
+
+
+
+
+
+***************************************************************************************************************************************************
+
+
+
+
+
+float.Epsilon과 Vector3.sqrMagnitude를 통해 본래 있던 위치와 거의 근접한 경우 while문을 벗어나게 할 수 있게 되었다.
+
+
+
+void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.transform.tag == playerTag)
+        {
+            rb2D.gravityScale = 1f;
+            rb2D.AddForce(Vector3.down * 3f * Time.deltaTime, ForceMode2D.Impulse);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.transform.tag == "GroundUnit")
+        {
+            StartCoroutine(backOrigin());
+        }
+    }
+
+    IEnumerator backOrigin()
+    {
+        rb2D.gravityScale = 1f;
+        
+        float sqrRemaingDistance = (transform.position - originPos).sqrMagnitude;
+
+        while(sqrRemaingDistance > float.Epsilon + 0.1f)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(rb2D.position, originPos, rBackSpeed * Time.deltaTime);
+            rb2D.MovePosition(newPosition);
+            sqrRemaingDistance = (transform.position - originPos).sqrMagnitude;
+            
+            yield return null;
+        }
+        rb2D.gravityScale = 0f;
+        rb2D.velocity = Vector3.zero;
+    }
+
+코루틴의 while문 안을 보면 남아 있는 거리가 float.Epsilon(거의 0에 근접한 수)보다 큰 경우 while문이 지속된다.
+
+
+
+부동 소수점으로 오차가 존재하기 때문에, == 가 불가능하고 따라서 오차가 거의 없는 경우, 즉 본래 있던 위치와 현재 위치의 차이가 거의 0에
+
+
+
+수렴할 때까지 본래 자리로 돌아가도록 하였다.
+
+
+
+0.1f를 더해준 까닭은 0.1f를 붙여주지 않으면 while문 조건이 만족되지 않기 때문이었다. Debug.Log를 찍으면 while문을 나오는게 맞는 것 같은데,
+
+
+
+나오질 않아 0.1f를 더해주니 그제서야 while문을 나온다. 이것이 옳은 방법인진 모르겠으나 위치를 계속 확인해보니 
+
+
+
+0.01~0.10 정도의 오차로 거의 동일하였다.
+
+
+
+
+
+
+
+cf)     Rigidbody2D.MovePosition(Vector3) 은 Vector3의 위치로 이동시켜주는 함수이다.
+
+        Vector3.sqrManitude는 Vector3의 제곱 값이다.

@@ -1,0 +1,10 @@
+세이브데이터, 로드데이터 
+
+기본경로
+	C:\Users\gkenf\AppData\LocalLow\DefaultCompany
+	.Json파일로 저장되어진다.
+	
+foreach(데이터타입 변수명 in 배열) { }
+	배열을 순회하면서 각각의 데이터 요소들에 순서대로접근
+	배열을 차례로 접근하면서 변수에다 정보를 담는다
+

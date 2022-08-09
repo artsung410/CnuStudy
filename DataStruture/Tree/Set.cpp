@@ -56,6 +56,7 @@ int Set::height() const // 큐 사용(BFS)
 	}
 	return height;
 }
+
 int Set::height2() const // 재귀 사용
 {
 	if (_head->Parent == nullptr)
@@ -65,6 +66,7 @@ int Set::height2() const // 재귀 사용
 
 	return heightHelper(_head->Parent);
 }
+
 int Set::heightHelper(Node* node) const 
 {
 	int height = 0;

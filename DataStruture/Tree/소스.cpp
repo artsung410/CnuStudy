@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	/*auto initList = { 10, 5, 1, 6, 17, 14, 21 };
+	auto initList = { 10, 5, 1, 6, 17, 14, 21 };
 
 	Set s;
 	for (int elem : initList)
@@ -31,14 +31,14 @@ int main()
 
 	cout << "레벨순회\n";
 	s.traverseByLevelorder();
-	cout << endl;*/
+	cout << endl;
 
-	Set s;
+	/*Set s;
 
 	for (int i = 0; i < 5; i++)
 	{
 		s.insert(i);
-	}
+	}*/
 
 	std::cout << s.height() << " " << s.height2();
 

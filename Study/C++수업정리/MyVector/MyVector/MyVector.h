@@ -1,252 +1,82 @@
 ﻿#pragma once
 
-#include <string>
-#include <utility>
-#include <sstream>
-using namespace std;
-
-struct MyObject
-{
-    int _id;
-};
-
-
 class MyVector
 {
-    using iterator = MyObject*;
-    using const_iterator = const MyObject*;
-
-private:
-    size_t _size = 0; // 원소의 개수
-    size_t _capacity = 0; // 벡터의 용량
-    MyObject* _MyObjs = nullptr; // 벡터의 주소값
-
-private:
-
-    void reallocate(int newCapacity)
-    {
-        MyObject* newContainer = new MyObject[newCapacity];
-
-        for (size_t i = 0; i < +_size; ++i)
-        {
-            newContainer[i] = _MyObjs[i];
-        }
-
-        delete[] _MyObjs;
-
-        _MyObjs = newContainer;
-        _capacity = newCapacity;
-    }
-
-    void reserve(int newCapacity)
-    {
-        if (_capacity >= newCapacity)
-        {
-            return;
-        }
-
-        MyObject* newContainer = new MyObject[newCapacity];
-
-        for (size_t i = 0; i < +_size; ++i)
-        {
-            newContainer[i] = _MyObjs[i];
-        }
-
-        delete[] _MyObjs;
-
-        _MyObjs = newContainer;
-        _capacity = newCapacity;
-
-    }
-
-    iterator begin() { return _MyObjs; }
-    const_iterator begin() const { return _MyObjs; }
-    iterator end() const { return _MyObjs + _size; }
-    //const_iterator end() const { return _MyObjs + _size; }
-
-    //const_iterator end() const { return _MyObjs + _size; };
-
-    iterator erase(iterator pos)
-    {
-        if (_size == 0)
-        {
-            return end();
-        }
-
-        iterator last = end() - 1;
-        for (iterator iter = pos; iter != last; ++iter)
-        {
-            *iter = *(iter + 1);
-        }
-
-        --_size;
-
-        return pos;
-    }
-
 public:
-    // Constructor.
+	// 기본 생성자
+	MyVector() = default;
 
-    MyVector() = default;
+	// count만큼 공간이 할당된 생성자
+	explicit MyVector(size_t count);
 
-    MyVector(int capacity) : _MyObjs(new MyObject[capacity]), _size(0), _capacity(capacity) {}
+	// 복사 생성자. 깊은 복사(deep copy)가 이뤄져야 한다.
+	MyVector(const MyVector& other);
 
-    // Copy constructor. -> 필드값들에 재 할당과정이 들어간다. 
-    MyVector(const MyVector& other)
-        : _MyObjs(new MyObject[other._capacity]), _size(other._size),
-        _capacity(other._capacity)
-    {
-        for (size_t i = 0; i < _size; i++)
-        {
-            _MyObjs[i] = other._MyObjs[i];
-        }
-    }
+	// 할당 연산자. 깊은 복사(deep copy)가 이뤄져야 한다.
+	MyVector& operator=(const MyVector& rhs);
 
-    // Assignment operator.
-    MyVector& operator=(const MyVector& other)
-    {
-        if (this == &other)
-        {
-            return *this;
-        }
+	// 소멸자
+	~MyVector();
 
-        MyVector temp(other);
-        std::swap(_MyObjs, temp._MyObjs);
-        std::swap(_size, temp._size);
-        std::swap(_capacity, _capacity);
-    }
+	// 첫 번째 요소를 가리키는 반복자를 반환한다.
+	int* begin();
+	const int* begin() const;
 
-    // Destructor.
-    ~MyVector()
-    {
-        delete[] _MyObjs;
-        _MyObjs = nullptr;
-        _size = 0;
-        _capacity = 0;
-    }
+	// 마지막 요소의 다음 번째를 가리키는 반복자를 반환한다.
+	int* end();
+	const int* end() const;
 
-public: // 아래 기능 함수들을 .cpp 파일에 구현합니다.
+	// 컨테이너가 비었는지 검사한다.
+	bool				empty() const;
 
-    // Returns current capacity of this vector.
-    int GetCapacity() const
-    {
-        return _capacity;
-    }
+	// 원소의 개수를 반환한다.
+	size_t				size() const;
 
-    // Returns current size of this vector.
-    int GetSize() const
-    {
-        return _size;
-    }
+	// 현재 할당된 공간의 크기를 반환한다.
+	size_t				capacity() const;
 
-    // Creates a new MyObject instance with the given ID, and appends it to the end of this vector.
-    void Add(int id)
-    {
-        // 용량이 가득 찼을 !
-        if (_capacity == _size)
-        {
-            reserve((_capacity == 0) ? 1 : _capacity * 2);
-        }
+	// pos에 위치한 원소의 참조를 반환한다. 만약 pos가 범위에서 벗어나면 std::out_of_range 예외가 던져진다.
+	int& at(size_t pos);
+	const int& at(size_t pos) const;
 
-        _MyObjs[_size]._id = id;
-        ++_size;
-    }
+	// pos에 위치한 원소의 참조를 반환한다.
+	int& operator[](size_t pos);
+	const int& operator[](size_t pos) const;
 
-    // Returns the first occurrence of MyObject instance with the given ID.
-    // Returns nullptr if not found.
-    MyObject* FindById(int MyObjectId) const
-    {
-        for (size_t i = 0; i < _size; ++i)
-        {
-            if (_MyObjs[i]._id == MyObjectId)
-            {
-                return &_MyObjs[i];
-            }
-        }
-        return nullptr;
-    }
+	// 컨테이너의 첫 번째 원소의 참조를 반환한다.
+	int& front();
+	const int& front() const;
 
-    // Trims the capacity of this vector to current size.
-    void TrimToSize()
-    {
-        if (_size == _capacity)
-        {
-            return;
-        }
+	// 컨테이너의 마지막 원소의 참조를 반환한다.
+	int& back();
+	const int& back() const;
 
-        reallocate(_size);
-    }
+	// 컨테이너를 비운다.
+	void				clear();
 
-    // Returns the MyObject instance at the specified index.
-    MyObject& operator[](size_t index) { return _MyObjs[index]; }
+	// pos 이전 위치에 value를 삽입한다.
+	// value가 삽입된 곳을 가리키는 포인터를 반환한다.
+	int* insert(int* pos, int value);
 
-    //Returns string representation of the vector.
+	// pos에 위치한 원소를 지운다.
+	// 삭제된 요소의 다음 포인터를 반환한다.
+	int* erase(int* pos);
 
-    std::string ToString() const
-    {
-        // {1, 2, 3, 4, 5}
-        // [1, 2, 3, 4, 5]
+	// 컨테이너의 맨 끝에 원소를 추가한다.
+	void				push_back(int value);
 
-        std::stringstream ss;
+	// 컨테이너의 마지막 원소를 삭제한다.
+	void				pop_back();
 
-        ss << "[";
+	// value가 존재하는지 검사한다.
+	bool				contains(int value);
 
-        for (size_t i = 0; i < _size; ++i)
-        {
-            ss << _MyObjs[i]._id << ",";
-        }
-
-        ss << "]";
-
-        return ss.str();
-    }
-
-    // Remove all MyObject instances with the given ID in this vector.
-    void RemoveAll(int MyObjectId)
-    {
-        iterator iter = begin();
-
-        while (iter != end())
-        {
-            if (iter->_id == MyObjectId)
-            {
-                iter = erase(iter);
-            }
-            else
-            {
-                ++iter;
-            }
-        }
-
-    }
-
-    // {1, 1, 2, 2, 3, 3, 4, 4}
-    // {1, 1}
-    // {2, 2}
-    // {3, 3}
-    // {4, 4}
-
-    MyVector* GroupById(int* numGroups)
-    {
-        MyVector ids;
-        for (size_t i = 0; i < _size; ++i)
-        {
-            if (nullptr == ids.FindById(_MyObjs[i]._id))
-            {
-                ids.Add(_MyObjs[i]._id);
-            }
-        }
-
-        int count = ids.GetSize();
-        MyVector* result = new MyVector[count];
-
-        for (size_t i = 0; i < _size; ++i)
-        {
-            size_t index = ids.FindById(_MyObjs[i]._id) - ids.begin();
-            result[index].Add(_MyObjs[i]._id);
-        }
-
-        *numGroups = count;
-        return result;
-    }
+	// 컨테이너의 용량을 newCapacity보다 같거나 크게 늘린다.
+	// newCapacity > _capacity라면 새로운 메모리를 할당하고,
+	// 그렇지 않다면 아무 동작도 수행하지 않는다.
+	void				reserve(size_t newCapacity);
+private:
+	int* _container = nullptr;
+	size_t				_size = 0;
+	size_t				_capacity = 0;
 };

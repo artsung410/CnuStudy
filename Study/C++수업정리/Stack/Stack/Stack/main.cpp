@@ -5,12 +5,15 @@ using namespace std;
 int main() 
 {
     Stack stack(5);
+
     stack.Push(1);
     stack.Push(2);
     stack.Push(3);
     stack.Push(4);
     stack.Push(5);
     stack.Push(6);
+
+    cout << "현재 스택의 크기는? : " << stack.Size() << endl;
 
     while (!stack.IsEmpty())
     {

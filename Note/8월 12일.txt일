@@ -200,3 +200,16 @@ C#
 	- Unity의 스크립트 백엔드(스크립트 환경)에는 Mono, IL2CPP 두가지존재 -> 여기서 차이가 발생
 	- Unity에서 가비지 컬렉션은 Boehm GC를 사용 
 		- 세대별로 관리하지 않으며, 메모리 압축없기 때문에 메모리 단편화가 쉽게 일어나고, 힙도 쉽게 확장된다. 이러한 이유로 최적화 이슈가 발생할수있다.
+		
+		
+==========
+
+상속
+부모 : protected virtual void Info( ) --- >
+자식 : protected override void Info( ) // 일반 상속, 함수 재정의
+          protected override void Info()  // 부모함수까지 출력해야 할때.
+         {
+               base.Info();
+         }
+부모 : abstract protected void Name(); // 자식클래스에서 무조건 완성시켜야 할 때
+자식 : protected override void Name();
